@@ -462,7 +462,7 @@ header.micro-cta-active .mega-menu-panel {
 .right-nav-actions {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 0;            /* Single CTA — no gap needed */
   flex-shrink: 0;
 }
 
@@ -557,6 +557,97 @@ header.micro-cta-active .mega-menu-panel {
   width: 100%;
 }
 
+/* ══════════════════════════════════════════════════════
+   ★  MENU BAR ADDICTIVE CTA — The single action the ICP
+      can't resist clicking. Gradient glow + pulse aura.
+   ══════════════════════════════════════════════════════ */
+.menu-cta-addictive {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: linear-gradient(135deg, #FF5964 0%, #FF7E40 100%);
+  color: #fff;
+  padding: 10px 22px;
+  border-radius: 8px;
+  font-family: var(--font-sans);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.035em;
+  cursor: pointer;
+  text-decoration: none;
+  white-space: nowrap;
+  position: relative;
+  overflow: hidden;
+  box-shadow:
+    0 0 0 0 rgba(255, 89, 100, 0.45),
+    0 4px 18px rgba(255, 89, 100, 0.32);
+  animation: cta-pulse-glow 2.6s ease-in-out infinite;
+  transition: transform 0.2s var(--ease-subtle),
+              box-shadow 0.25s var(--ease-subtle);
+}
+
+/* Shimmer sweep across the button */
+.menu-cta-addictive::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -75%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    rgba(255,255,255,0) 0%,
+    rgba(255,255,255,0.28) 50%,
+    rgba(255,255,255,0) 100%
+  );
+  animation: cta-shimmer 2.8s ease-in-out infinite;
+  pointer-events: none;
+}
+
+/* Small live-indicator dot */
+.menu-cta-addictive::after {
+  content: '';
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  background: #fff;
+  border-radius: 50%;
+  margin-left: 6px;
+  opacity: 0.85;
+  animation: cta-dot-blink 1.4s ease-in-out infinite;
+  flex-shrink: 0;
+}
+
+.menu-cta-addictive:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow:
+    0 0 0 6px rgba(255, 89, 100, 0.15),
+    0 8px 28px rgba(255, 89, 100, 0.45);
+  animation-play-state: paused; /* Pause glow loop on hover for stability */
+}
+
+/* Pulsing glow ring */
+@keyframes cta-pulse-glow {
+  0%   { box-shadow: 0 0 0 0 rgba(255, 89, 100, 0.5),  0 4px 18px rgba(255, 89, 100, 0.28); }
+  50%  { box-shadow: 0 0 0 8px rgba(255, 89, 100, 0),   0 6px 24px rgba(255, 89, 100, 0.40); }
+  100% { box-shadow: 0 0 0 0 rgba(255, 89, 100, 0.5),  0 4px 18px rgba(255, 89, 100, 0.28); }
+}
+
+/* Shimmer left-to-right sweep */
+@keyframes cta-shimmer {
+  0%   { left: -75%; opacity: 0;  }
+  30%  { opacity: 1;               }
+  100% { left: 140%; opacity: 0;  }
+}
+
+/* Live dot blink */
+@keyframes cta-dot-blink {
+  0%, 100% { opacity: 0.85; transform: scale(1);   }
+  50%       { opacity: 0.4;  transform: scale(0.75); }
+}
+
+
+
 /* Sticky Micro CTA helper options */
 .micro-cta-helper {
   display: none;
@@ -586,10 +677,7 @@ header.micro-cta-active .micro-cta-helper {
   display: flex;
 }
 
-header.micro-cta-active .right-nav-actions .roi-link,
-header.micro-cta-active .right-nav-actions .btn-ghost {
-  display: none;
-}
+/* The addictive CTA button is always visible; no hide-on-scroll rules needed. */
 
 /* Vertical Registry Timeline Index */
 .registry-timeline {

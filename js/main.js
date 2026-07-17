@@ -10,6 +10,7 @@ class AzeonApp {
     this.initCalculator();
     this.initTopTicker();
     this.init3DTilt();
+    this.initHeroConsoleSequence();
     this.initInteractiveDecision();
     this.initConversionModals();
     this.initKeyboardNav();
@@ -70,69 +71,201 @@ class AzeonApp {
     rows.forEach(row => observer.observe(row));
   }
 
+  initHeroConsoleSequence() {
+    const consoleBox = document.querySelector('.hero-os-console');
+    const heroSection = document.getElementById('scene-1');
+    if (!consoleBox || !heroSection) return;
+
+    const timeouts = [];
+    const lines = [
+      { id: '#line-1', delay: 400 },
+      { id: '#line-2', delay: 900 },
+      { id: '#line-3', delay: 1500 },
+      { id: '#step-1', delay: 2200 },
+      { id: '#step-2', delay: 3600 },
+      { id: '#step-3', delay: 5000 },
+      { id: '#step-4', delay: 6400 }
+    ];
+
+    const showElement = (selector) => {
+      const el = document.querySelector(selector);
+      if (el) {
+        el.classList.add('visible');
+        if (el.classList.contains('console-step')) {
+          document.querySelectorAll('.console-step').forEach(s => s.classList.remove('active-step'));
+          el.classList.add('active-step');
+        }
+      }
+    };
+
+    const finishSequence = () => {
+      heroSection.classList.add('sequence-done');
+      const decisionEvent = new CustomEvent('azeonDecisionStart');
+      window.dispatchEvent(decisionEvent);
+    };
+
+    lines.forEach(item => {
+      const t = setTimeout(() => showElement(item.id), item.delay);
+      timeouts.push(t);
+    });
+
+    const finalT = setTimeout(finishSequence, 8200);
+    timeouts.push(finalT);
+
+    const skipBtn = document.querySelector('.console-skip-btn');
+    if (skipBtn) {
+      skipBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        timeouts.forEach(t => clearTimeout(t));
+        lines.forEach(item => {
+          const el = document.querySelector(item.id);
+          if (el) el.classList.add('visible');
+        });
+        finishSequence();
+      });
+    }
+  }
+
   initInteractiveDecision() {
-    const triggers = document.querySelectorAll('.decision-btn');
-    const reasoningBox = document.querySelector('.reasoning-pathways');
-    if (triggers.length === 0 || !reasoningBox) return;
+    const cases = document.querySelectorAll('.case-item');
+    const executeBtn = document.getElementById('decision-trigger-btn');
+    const logBox = document.querySelector('.mutation-logs');
+    const hashBox = document.querySelector('.ledger-hash-value');
 
-    triggers.forEach(btn => {
-      btn.addEventListener('click', () => {
-        // Dispatch start event for webgl.js refraction concentration
-        const decisionEvent = new CustomEvent('azeonDecisionStart');
-        window.dispatchEvent(decisionEvent);
+    if (cases.length === 0 || !executeBtn || !logBox) return;
 
-        // Fade out other buttons
-        triggers.forEach(b => {
-          if (b !== btn) {
-            b.style.opacity = '0.3';
-            b.style.pointerEvents = 'none';
-          }
-        });
+    const caseData = {
+      case1: {
+        rules: [
+          { id: 'rule-plan', text: 'Validate account status & SLA... [ENTERPRISE]', status: 'success' },
+          { id: 'rule-amount', text: 'Amount within auto-limit ($2,450 <= $5,000)... [VALID]', status: 'success' },
+          { id: 'rule-geo', text: 'Geographic restriction check (US Account)... [VERIFIED]', status: 'success' }
+        ],
+        logs: [
+          'LOG: Initializing execution trace for duplicate billing dispute.',
+          'POLICY: SLA threshold verification passed.',
+          'ORCHESTRATION: Calling Stripe Refund API payload {amount: 245000}...',
+          'MUTATION: Stripe refund token ch_8a2d returned (200 OK).',
+          'ORCHESTRATION: Synchronizing Salesforce case state...',
+          'MUTATION: Case status updated to Closed (200 OK).'
+        ],
+        hash: 'sha256-8a9d12e9bcf23d38e2e28a011de87bdfc83ab29d91f274a7b0a7c427fa8319f'
+      },
+      case2: {
+        rules: [
+          { id: 'rule-plan', text: 'Validate account status & SLA... [HEALTH_PREMIUM]', status: 'success' },
+          { id: 'rule-amount', text: 'Amount within auto-limit ($0.00)... [VALID]', status: 'success' },
+          { id: 'rule-geo', text: 'Geographic restriction check (US-East)... [VERIFIED]', status: 'success' }
+        ],
+        logs: [
+          'LOG: Decrypting patient record identifier checks.',
+          'POLICY: HIPAA validation protocol checking active.',
+          'ORCHESTRATION: Querying secure data isolation partition...',
+          'MUTATION: PII credential strip verified (0 credentials leaked).',
+          'ORCHESTRATION: Invoking EHR system state sync endpoint...',
+          'MUTATION: Database record committed and secure audit log saved.'
+        ],
+        hash: 'sha256-f9d273ab38210381e028b12cb9287fd98a87d0c3bc9ea21237c82e219bdfc282'
+      },
+      case3: {
+        rules: [
+          { id: 'rule-plan', text: 'Validate account status & SLA... [B2B_STANDARD]', status: 'success' },
+          { id: 'rule-amount', text: 'Amount exceeds auto-limit ($12,000 > $5,000)... [REQUIRES_AUTH]', status: 'warning' },
+          { id: 'rule-geo', text: 'Geographic restriction check (EU Account)... [VERIFIED]', status: 'success' }
+        ],
+        logs: [
+          'LOG: Initializing downgrade credit validation SOP.',
+          'POLICY: SLA credit check threshold exceeded.',
+          'MUTATION: Initiating compliance authorization request...',
+          'WARNING: Autopilot execution suspended. Manager verification required.'
+        ],
+        hash: 'sha256-d88e23ba8912efc081be782aef0c83bd12e8cb0f892da7ef38ab2f9df8c8a1e2'
+      }
+    };
 
-        btn.style.borderColor = 'var(--status-resolved)';
-        btn.style.backgroundColor = 'rgba(0, 195, 137, 0.05)';
-        btn.style.color = 'var(--status-resolved)';
+    let activeCaseKey = 'case1';
 
-        // Print reasoning steps
-        reasoningBox.innerHTML = '';
-        const steps = [
-          { text: 'LOG: Checking database policy limits... [COMPLETED]', status: 'info' },
-          { text: 'AUDIT: Validating transaction source records... [AUTHORIZED]', status: 'info' },
-          { text: 'DECISION: Deduced valid operation SOP executed successfully.', status: 'resolved' }
-        ];
+    const selectCase = (caseKey) => {
+      activeCaseKey = caseKey;
+      cases.forEach(c => {
+        if (c.getAttribute('data-case') === caseKey) {
+          c.classList.add('active');
+        } else {
+          c.classList.remove('active');
+        }
+      });
 
-        steps.forEach((step, idx) => {
-          setTimeout(() => {
-            const line = document.createElement('div');
-            line.className = 'reasoning-line';
-            if (step.status === 'resolved') {
-              line.classList.add('resolved');
-            }
-            line.innerText = step.text;
-            reasoningBox.appendChild(line);
-            setTimeout(() => line.classList.add('visible'), 50);
+      document.getElementById('rule-plan').innerHTML = '<span class="rule-icon">&#10003;</span> <span class="rule-text">Validate account status & SLA... [WAITING]</span>';
+      document.getElementById('rule-amount').innerHTML = '<span class="rule-icon">&#10003;</span> <span class="rule-text">Amount within auto-limit... [WAITING]</span>';
+      document.getElementById('rule-geo').innerHTML = '<span class="rule-icon">&#10003;</span> <span class="rule-text">Geographic restriction check... [WAITING]</span>';
+      
+      document.querySelectorAll('.policy-rule').forEach(r => {
+        r.className = 'policy-rule';
+      });
 
-            // If it is the last step, append a reset trigger
-            if (idx === steps.length - 1) {
-              setTimeout(() => {
-                const resetLink = document.createElement('button');
-                resetLink.className = 'btn-text-link';
-                resetLink.style.marginTop = '12px';
-                resetLink.style.display = 'inline-block';
-                resetLink.innerText = 'Reset SOP Simulation ↺';
-                resetLink.setAttribute('aria-label', 'Reset SOP Simulation');
-                resetLink.addEventListener('click', () => {
-                  reasoningBox.innerHTML = '<div class="reasoning-line visible" style="opacity: 0.5;">Awaiting SOP execution trigger...</div>';
-                  btn.removeAttribute('style');
-                  triggers.forEach(b => b.removeAttribute('style'));
-                });
-                reasoningBox.appendChild(resetLink);
-              }, 500);
-            }
-          }, idx * 600);
-        });
+      logBox.innerHTML = '<div class="mutation-line">Awaiting execution trigger...</div>';
+      if (hashBox) hashBox.innerText = 'Awaiting commit...';
+      executeBtn.disabled = false;
+    };
+
+    cases.forEach(c => {
+      c.addEventListener('click', () => {
+        selectCase(c.getAttribute('data-case'));
+      });
+      c.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          selectCase(c.getAttribute('data-case'));
+        }
       });
     });
+
+    executeBtn.addEventListener('click', () => {
+      executeBtn.disabled = true;
+      const data = caseData[activeCaseKey];
+      if (!data) return;
+
+      logBox.innerHTML = '';
+
+      data.rules.forEach((rule, idx) => {
+        setTimeout(() => {
+          const el = document.getElementById(rule.id);
+          if (el) {
+            el.className = `policy-rule rule--${rule.status === 'success' ? 'matched' : 'failed'}`;
+            el.querySelector('.rule-text').innerText = rule.text;
+          }
+        }, idx * 400);
+      });
+
+      setTimeout(() => {
+        data.logs.forEach((logText, idx) => {
+          setTimeout(() => {
+            const line = document.createElement('div');
+            line.className = 'mutation-line';
+            if (logText.startsWith('MUTATION:')) {
+              line.classList.add('line--success');
+            } else if (logText.startsWith('WARNING:')) {
+              line.classList.add('line--warning');
+            }
+            line.innerText = logText;
+            logBox.appendChild(line);
+            logBox.scrollTop = logBox.scrollHeight;
+          }, idx * 400);
+        });
+
+        setTimeout(() => {
+          if (hashBox) {
+            hashBox.innerText = data.hash;
+          }
+          const decisionEvent = new CustomEvent('azeonDecisionStart');
+          window.dispatchEvent(decisionEvent);
+        }, data.logs.length * 400 + 100);
+
+      }, 1000);
+    });
+
+    selectCase('case1');
   }
 
   initCalculator() {

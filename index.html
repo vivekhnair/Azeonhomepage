@@ -243,52 +243,89 @@
           <div class="scene-depth-atmosphere scene-depth-atmosphere--1"></div>
         </div>
         <div class="scene-layer-mid" aria-hidden="true">
-          <div class="hero-resolution-visual">
-            <div class="hero-visual-track hero-visual-track--1">
-              <span class="hero-visual-dot"></span>
-              <span class="hero-visual-ticket">invoice-824</span>
-              <span class="hero-visual-line"></span>
-              <span class="hero-visual-status status--resolved">RESOLVED</span>
+          <div class="hero-os-console" role="region" aria-label="Azeon OS transaction sequence console">
+            <div class="console-titlebar">
+              <div class="console-actions">
+                <span class="console-dot dot--close"></span>
+                <span class="console-dot dot--minimize"></span>
+                <span class="console-dot dot--expand"></span>
+              </div>
+              <div class="console-title font-sans-label">azeon-core // transaction-sandbox</div>
+              <button class="console-skip-btn font-sans-label" type="button" aria-label="Skip initialization sequence">Skip Sequence &rarr;</button>
             </div>
-            <div class="hero-visual-track hero-visual-track--2">
-              <span class="hero-visual-dot"></span>
-              <span class="hero-visual-ticket">salesforce-sync</span>
-              <span class="hero-visual-line"></span>
-              <span class="hero-visual-status status--active">PROCESSING</span>
-            </div>
-            <div class="hero-visual-track hero-visual-track--3">
-              <span class="hero-visual-dot"></span>
-              <span class="hero-visual-ticket">compliance-audit</span>
-              <span class="hero-visual-line"></span>
-              <span class="hero-visual-status status--resolved">SECURED</span>
-            </div>
-            <div class="hero-visual-track hero-visual-track--4">
-              <span class="hero-visual-dot"></span>
-              <span class="hero-visual-ticket">stripe-refund</span>
-              <span class="hero-visual-line"></span>
-              <span class="hero-visual-status status--resolved">REFUNDED</span>
+            <div class="console-screen">
+              <div class="console-line line--sys" id="line-1">AZEON CORE v1.0.0 init... OK</div>
+              <div class="console-line line--sys" id="line-2">CONNECTING TO ENTERPRISE TELEMETRY STREAM... [SECURE]</div>
+              <div class="console-line line--alert" id="line-3">INCOMING INQUIRY DETECTED : ACCT_94821_ENT</div>
+              
+              <div class="console-step step-ingest" id="step-1">
+                <div class="step-header">
+                  <span class="step-label font-sans-label">[INGEST]</span>
+                  <span class="step-summary">Payload: "Double billed for seat-mismatch SKU-829..."</span>
+                </div>
+                <div class="step-body">
+                  &nbsp;&nbsp;&bull; intent: duplicate_billing (98% confidence)<br>
+                  &nbsp;&nbsp;&bull; entities: invoice_id=INV-829 &middot; refund_amount=$2,450.00
+                </div>
+              </div>
+              
+              <div class="console-step step-policy" id="step-2">
+                <div class="step-header">
+                  <span class="step-label font-sans-label">[POLICY]</span>
+                  <span class="step-summary">Evaluating SLA and billing rulesets...</span>
+                </div>
+                <div class="step-body">
+                  &nbsp;&nbsp;&bull; SLA checking: auto_limit <= $5,000 [MATCHED]<br>
+                  &nbsp;&nbsp;&bull; Fraud validation: check_pass [VERIFIED]<br>
+                  &nbsp;&nbsp;&bull; Tenant DB status: isolated_active [CONNECTED]
+                </div>
+              </div>
+              
+              <div class="console-step step-orchestrate" id="step-3">
+                <div class="step-header">
+                  <span class="step-label font-sans-label">[ORCHESTRATE]</span>
+                  <span class="step-summary">Executing direct API mutations...</span>
+                </div>
+                <div class="step-body">
+                  &nbsp;&nbsp;&bull; POST /v1/stripe/refunds (refund=$2,450.00) &rarr; 200 OK<br>
+                  &nbsp;&nbsp;&bull; PATCH /v1/salesforce/cases (status=Resolved) &rarr; 200 OK
+                </div>
+              </div>
+              
+              <div class="console-step step-audit" id="step-4">
+                <div class="step-header">
+                  <span class="step-label font-sans-label">[LEDGER]</span>
+                  <span class="step-summary">Commit transaction payload to audit chain...</span>
+                </div>
+                <div class="step-body">
+                  &nbsp;&nbsp;&bull; Commit hash: sha256-6bcd852e1a9fbdfd98218e24ab...<br>
+                  &nbsp;&nbsp;&bull; STATUS: DECISIVE AUTONOMOUS RESOLUTION COMPLETE [480ms]
+                </div>
+              </div>
             </div>
           </div>
         </div>
         <div class="scene-layer-fg">
           <div class="scene-content invitation-container">
-            <div class="hero-trust-line">
-              SOC 2 Type II &nbsp;&middot;&nbsp; HIPAA &nbsp;&middot;&nbsp; ISO 27001 &nbsp;&middot;&nbsp; GDPR Ready
+            <div class="invitation-content">
+              <div class="hero-trust-line">
+                SOC 2 Type II &nbsp;&middot;&nbsp; HIPAA &nbsp;&middot;&nbsp; ISO 27001 &nbsp;&middot;&nbsp; GDPR Ready
+              </div>
+              <h1 id="hero-headline">Every Customer Issue.<br>Resolved Decisively.</h1>
+              <p class="hero-subline">
+                The future of customer operations is not faster conversations.<br>
+                It is direct database resolution, executed autonomously, without human delay.
+              </p>
+              <div class="hero-cta-group">
+                <a href="https://calendly.com/azeon-ai/strategy" target="_blank" rel="noopener noreferrer" class="btn-filled-link" aria-label="Deploy an autonomous operational pilot">
+                  <span>Deploy Autonomous Pilot</span>
+                </a>
+                <button class="btn-ghost watch-live-trigger" type="button" aria-label="Simulate Autopilot ROI">
+                  Simulate Autopilot ROI
+                </button>
+              </div>
+              <p class="hero-micro-trust font-sans-label">30-minute executive session &middot; No commitment required</p>
             </div>
-            <h1 id="hero-headline">Every Customer Issue.<br>Resolved Decisively.</h1>
-            <p class="hero-subline">
-              The future of customer operations is not faster conversations.<br>
-              It is direct database resolution, executed autonomously, without human delay.
-            </p>
-            <div class="hero-cta-group">
-              <a href="https://calendly.com/azeon-ai/strategy" target="_blank" rel="noopener noreferrer" class="btn-filled-link" aria-label="Deploy an autonomous operational pilot">
-                <span>Deploy Autonomous Pilot</span>
-              </a>
-              <button class="btn-ghost watch-live-trigger" type="button" aria-label="Simulate Autopilot ROI">
-                Simulate Autopilot ROI
-              </button>
-            </div>
-            <p class="hero-micro-trust font-sans-label">30-minute executive session &middot; No commitment required</p>
           </div>
         </div>
       </section>
@@ -347,26 +384,30 @@
                 <button class="btn-ghost readiness-trigger" type="button">Audit My Operations Backlog &rarr;</button>
               </div>
             </div>
-            <div class="ledger-sheet ledger-sheet--pending" role="region" aria-label="Unresolved ticket backlog">
-              <div class="ledger-sheet-title ledger-title--pending">
-                <span>UNRESOLVED BACKLOG</span>
-                <span>12,840 TICKETS</span>
+            <div class="ledger-sheet ledger-sheet--pending" role="region" aria-label="Database queue backlog">
+              <div class="ledger-sheet-title ledger-title--pending font-sans-label">
+                <span>MUTATION QUEUE // BACKLOG</span>
+                <span>12,840 TRANSACTIONS PENDING</span>
               </div>
-              <div class="ledger-sheet-row ledger-row--pending">
-                <span>LOG #1209: Duplicate billing dispute (Enterprise account)</span>
-                <span class="ledger-status--pending">UNRESOLVED</span>
+              <div class="ledger-sheet-row ledger-row--pending font-sans-label">
+                <span class="ledger-db-op">[LOCK_ROW]</span>
+                <span>TX_1209: invoice_refund &rarr; ACCT_9482_ENT</span>
+                <span class="ledger-status--pending">AWAITING_SOP</span>
               </div>
-              <div class="ledger-sheet-row ledger-row--pending">
-                <span>LOG #1210: Invoice SKU mismatch ($4,200 discrepancy)</span>
-                <span class="ledger-status--pending">UNRESOLVED</span>
+              <div class="ledger-sheet-row ledger-row--pending font-sans-label">
+                <span class="ledger-db-op">[LOCK_ROW]</span>
+                <span>TX_1210: sku_reconciliation &rarr; CLINIC_88A</span>
+                <span class="ledger-status--pending">AWAITING_SOP</span>
               </div>
-              <div class="ledger-sheet-row ledger-row--pending">
-                <span>LOG #1211: PII credential strip timeout on patient record</span>
-                <span class="ledger-status--pending">UNRESOLVED</span>
+              <div class="ledger-sheet-row ledger-row--pending font-sans-label">
+                <span class="ledger-db-op">[LOCK_ROW]</span>
+                <span>TX_1211: decrypt_patient_pii &rarr; HOSP_72</span>
+                <span class="ledger-status--pending">AWAITING_SOP</span>
               </div>
-              <div class="ledger-sheet-row ledger-row--pending">
-                <span>LOG #1212: Refund pending compliance authorisation</span>
-                <span class="ledger-status--pending">UNRESOLVED</span>
+              <div class="ledger-sheet-row ledger-row--pending font-sans-label">
+                <span class="ledger-db-op">[LOCK_ROW]</span>
+                <span>TX_1212: auto_sla_credit &rarr; SAAS_9910</span>
+                <span class="ledger-status--pending">AWAITING_SOP</span>
               </div>
             </div>
           </div>
@@ -383,8 +424,24 @@
         <div class="scene-layer-mid" aria-hidden="true"></div>
         <div class="scene-layer-fg">
           <div class="scene-content editorial-grid reverse-grid">
-            <div class="lexical-text-box" role="region" aria-label="Live signal ingestion example">
-              Incoming request: <span class="highlight-span span-sentiment">&ldquo;I received a duplicate charge&rdquo;</span>. Please <span class="highlight-span span-catalog">check invoice invoice-824</span> as soon as possible and <span class="highlight-span span-intent">execute standard billing adjustment</span>.
+            <div class="ingestion-workspace-container">
+              <div class="lexical-text-box" role="region" aria-label="Live signal ingestion example">
+                Incoming request: <span class="highlight-span span-sentiment">&ldquo;I received a duplicate charge&rdquo;</span>. Please <span class="highlight-span span-catalog">check invoice invoice-824</span> as soon as possible and <span class="highlight-span span-intent">execute standard billing adjustment</span>.
+              </div>
+              <div class="ingestion-schema-ledger font-sans-label" role="region" aria-label="Ingestion schema parameter mapping">
+                <div class="schema-row">
+                  <span class="schema-label">EXTRACTED INTENT:</span>
+                  <span class="schema-value value--intent">duplicate_billing (98% confidence)</span>
+                </div>
+                <div class="schema-row">
+                  <span class="schema-label">ENTITIES DETECTED:</span>
+                  <span class="schema-value value--entities">invoice_id="INV-824" &middot; SLA_tier="Enterprise"</span>
+                </div>
+                <div class="schema-row">
+                  <span class="schema-label">CREDENTIAL SCRUBBER:</span>
+                  <span class="schema-value value--secured">STRIPPED // OAUTH_TOKEN, SECURE_PIN [OK]</span>
+                </div>
+              </div>
             </div>
             <div class="text-block">
               <div class="badge">How It Works</div>
@@ -444,18 +501,56 @@
                 </div>
               </div>
             </div>
-            <div class="decision-panel" role="region" aria-label="Interactive decision engine demonstration">
-              <div class="decision-issue" role="status">
-                <span class="decision-issue-label">ACTIVE TASK</span>
-                <span class="decision-issue-text">Resolve duplicate billing on invoice-824 (Enterprise Account #E-7291)</span>
+            <div class="decision-panel" role="region" aria-label="Interactive decision engine workspace">
+              <div class="decision-panel-left">
+                <div class="panel-section-title font-sans-label">INCOMING WORKLIST</div>
+                <div class="case-item active" data-case="case1" role="button" tabindex="0" aria-label="Ticket 8249: Double bill on INV-824">
+                  <div class="case-id">TICKET #8249</div>
+                  <div class="case-desc">Double bill on INV-824</div>
+                  <div class="case-meta">Enterprise Account #E-7291</div>
+                </div>
+                <div class="case-item" data-case="case2" role="button" tabindex="0" aria-label="Ticket 9410: Patient record mismatch">
+                  <div class="case-id">TICKET #9410</div>
+                  <div class="case-desc">Patient record mismatch</div>
+                  <div class="case-meta">Healthcare #H-9421</div>
+                </div>
+                <div class="case-item" data-case="case3" role="button" tabindex="0" aria-label="Ticket 1120: SLA subscription downgrade">
+                  <div class="case-id">TICKET #1120</div>
+                  <div class="case-desc">SLA subscription downgrade</div>
+                  <div class="case-meta">B2B SaaS #S-1120</div>
+                </div>
               </div>
-              <div class="decision-triggers">
-                <button class="decision-btn" type="button" id="decision-trigger-btn" aria-label="Execute billing adjustment SOP">
-                  Execute Billing Adjustment SOP
+              <div class="decision-panel-middle">
+                <div class="panel-section-title font-sans-label">POLICY GATE CHECKLIST</div>
+                <div class="policy-gate-flow">
+                  <div class="policy-rule" id="rule-plan">
+                    <span class="rule-icon">&#10003;</span>
+                    <span class="rule-text">Validate account status &amp; SLA... [WAITING]</span>
+                  </div>
+                  <div class="policy-rule" id="rule-amount">
+                    <span class="rule-icon">&#10003;</span>
+                    <span class="rule-text">Amount within auto-limit... [WAITING]</span>
+                  </div>
+                  <div class="policy-rule" id="rule-geo">
+                    <span class="rule-icon">&#10003;</span>
+                    <span class="rule-text">Geographic restriction check... [WAITING]</span>
+                  </div>
+                </div>
+                <button class="decision-execute-btn font-sans-label" type="button" id="decision-trigger-btn" aria-label="Execute transaction logic">
+                  Execute Autonomous SOP
                 </button>
               </div>
-              <div class="reasoning-pathways" aria-live="polite" role="log" aria-label="Decision reasoning trace">
-                <div class="reasoning-line reasoning-line--waiting">Awaiting SOP execution trigger...</div>
+              <div class="decision-panel-right">
+                <div class="panel-section-title font-sans-label">MUTATION &amp; LEDGER TRACE</div>
+                <div class="mutation-pane">
+                  <div class="mutation-logs" role="log" aria-live="polite">
+                    <div class="mutation-line">Awaiting execution trigger...</div>
+                  </div>
+                  <div class="ledger-commit-box">
+                    <div class="ledger-hash-label font-sans-label">CRYPTOGRAPHIC PROOF COMMIT</div>
+                    <div class="ledger-hash-value font-sans-label">Awaiting commit...</div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -472,34 +567,30 @@
         <div class="scene-layer-mid" aria-hidden="true"></div>
         <div class="scene-layer-fg">
           <div class="scene-content editorial-grid reverse-grid">
-            <div class="ledger-sheet" role="region" aria-label="Resolved transaction ledger">
-              <div class="ledger-sheet-title">
-                <span>TRANSACTION LEDGER</span>
-                <span class="ledger-status-badge">RESOLVED</span>
+            <div class="ledger-sheet" role="region" aria-label="Database relation update log">
+              <div class="ledger-sheet-title font-sans-label">
+                <span>SQL TRANSACTION MUTATION LOG</span>
+                <span class="ledger-status-badge">COMMIT SUCCESS</span>
               </div>
-              <div class="ledger-sheet-row">
-                <span class="ledger-tag">ACCOUNT</span>
-                <span class="ledger-val">Enterprise #E-7291 &middot; invoice-824</span>
+              <div class="ledger-sheet-row font-sans-label">
+                <span class="ledger-tag">MUTATION 1</span>
+                <span class="ledger-val">UPDATE users SET balance = balance + 2400 WHERE id = 7291;</span>
               </div>
-              <div class="ledger-sheet-row">
-                <span class="ledger-tag">DEDUCTED ERROR</span>
-                <span class="ledger-val">$2,400.00 USD</span>
+              <div class="ledger-sheet-row font-sans-label">
+                <span class="ledger-tag">MUTATION 2</span>
+                <span class="ledger-val">UPDATE invoices SET status = 'credited' WHERE id = 'INV-824';</span>
               </div>
-              <div class="ledger-sheet-row">
-                <span class="ledger-tag">COMPLIANCE CODE</span>
-                <span class="ledger-val">ISO-27001-A &middot; SOC2-CC6.1</span>
+              <div class="ledger-sheet-row font-sans-label">
+                <span class="ledger-tag">MUTATION 3</span>
+                <span class="ledger-val">INSERT INTO audit_ledger (ts, hash, SOP) VALUES (NOW(), 'sha256-8a9d...', 'INV_CREDIT_v2');</span>
               </div>
-              <div class="ledger-sheet-row">
-                <span class="ledger-tag">RESOLUTION TIME</span>
-                <span class="ledger-val">2.4 seconds</span>
+              <div class="ledger-sheet-row font-sans-label">
+                <span class="ledger-tag">STRIPE CALL</span>
+                <span class="ledger-val ledger-val--resolved">POST /v1/refunds {charge: 'ch_8912'} &rarr; 200 OK</span>
               </div>
-              <div class="ledger-sheet-row">
-                <span class="ledger-tag">STRIPE RESPONSE</span>
-                <span class="ledger-val ledger-val--resolved">REFUND AUTHORIZED</span>
-              </div>
-              <div class="ledger-sheet-row">
-                <span class="ledger-tag">SALESFORCE SYNC</span>
-                <span class="ledger-val ledger-val--resolved">CASE CLOSED &middot; LOGGED</span>
+              <div class="ledger-sheet-row font-sans-label">
+                <span class="ledger-tag">SFDC SYNC</span>
+                <span class="ledger-val ledger-val--resolved">PATCH /v1/cases/500821 {status: 'Closed'} &rarr; 200 OK</span>
               </div>
             </div>
             <div class="text-block">
@@ -537,15 +628,15 @@
               <div class="orbital-visualizer">
                 <div class="orbital-hub" aria-hidden="true">AZEON</div>
                 <div class="orbital-ring orbital-ring-1" aria-hidden="true">
-                  <div class="orbital-satellite sat-salesforce">Salesforce</div>
+                  <div class="orbital-satellite sat-salesforce">Salesforce <span class="sat-ms">(18ms Sync)</span></div>
                 </div>
                 <div class="orbital-ring orbital-ring-2" aria-hidden="true">
-                  <div class="orbital-satellite sat-stripe">Stripe</div>
-                  <div class="orbital-satellite sat-shopify">Shopify</div>
+                  <div class="orbital-satellite sat-stripe">Stripe <span class="sat-ms">(12ms Sync)</span></div>
+                  <div class="orbital-satellite sat-shopify">Shopify <span class="sat-ms">(15ms Sync)</span></div>
                 </div>
                 <div class="orbital-ring orbital-ring-3" aria-hidden="true">
-                  <div class="orbital-satellite sat-servicenow">ServiceNow</div>
-                  <div class="orbital-satellite sat-sap">SAP</div>
+                  <div class="orbital-satellite sat-servicenow">ServiceNow <span class="sat-ms">(22ms Sync)</span></div>
+                  <div class="orbital-satellite sat-sap">SAP <span class="sat-ms">(35ms Sync)</span></div>
                 </div>
               </div>
             </div>
@@ -728,6 +819,67 @@
                   <div class="vault-stream-line">&bull; ESTABLISHING SECURE TLS HANDSHAKE... [COMPLETED]</div>
                   <div class="vault-stream-line">&bull; PARSING TRANSACTIONS | REDACTING PII PHASES... [OK]</div>
                   <div class="vault-stream-line">&bull; AUDIT REPORT COMMITTED TO TAMPER-PROOF LEDGER... [AUTHORIZED]</div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Enterprise Security Architecture & Lifecycle Matrix -->
+            <div class="enterprise-frameworks-grid">
+              <div class="framework-card" role="region" aria-label="Azeon security isolation architecture">
+                <h3 class="font-sans-label">ENTERPRISE SECURITY ARCHITECTURE</h3>
+                <div class="arch-flow">
+                  <div class="arch-node">
+                    <span class="node-title font-sans-label">API Gateway</span>
+                    <span class="node-sub font-sans-label">TLS 1.3 Endpoints</span>
+                  </div>
+                  <div class="arch-arrow">&rarr;</div>
+                  <div class="arch-node">
+                    <span class="node-title font-sans-label">Scrubbing Vault</span>
+                    <span class="node-sub font-sans-label">PII Redaction</span>
+                  </div>
+                  <div class="arch-arrow">&rarr;</div>
+                  <div class="arch-node">
+                    <span class="node-title font-sans-label">Policy Gate</span>
+                    <span class="node-sub font-sans-label">Deterministic SOPs</span>
+                  </div>
+                  <div class="arch-arrow">&rarr;</div>
+                  <div class="arch-node">
+                    <span class="node-title font-sans-label">Audit Ledger</span>
+                    <span class="node-sub font-sans-label">Immutable Cryptography</span>
+                  </div>
+                </div>
+              </div>
+              <div class="framework-card" role="region" aria-label="Azeon implementation lifecycle">
+                <h3 class="font-sans-label">IMPLEMENTATION LIFECYCLE METHODOLOGY</h3>
+                <div class="lifecycle-steps">
+                  <div class="lifecycle-step-card">
+                    <span class="step-num">01</span>
+                    <div class="step-info">
+                      <span class="step-title font-sans-label">SOP Mapping</span>
+                      <p class="step-desc">Policy definitions translate into structured, deterministic ruleset libraries.</p>
+                    </div>
+                  </div>
+                  <div class="lifecycle-step-card">
+                    <span class="step-num">02</span>
+                    <div class="step-info">
+                      <span class="step-title font-sans-label">Sandbox Validation</span>
+                      <p class="step-desc">Dry-run simulation matches actions against historical customer logs.</p>
+                    </div>
+                  </div>
+                  <div class="lifecycle-step-card">
+                    <span class="step-num">03</span>
+                    <div class="step-info">
+                      <span class="step-title font-sans-label">Orchestration Setup</span>
+                      <p class="step-desc">Integrate secure systems of record credentials into isolated gateways.</p>
+                    </div>
+                  </div>
+                  <div class="lifecycle-step-card">
+                    <span class="step-num">04</span>
+                    <div class="step-info">
+                      <span class="step-title font-sans-label">Compliance Audit</span>
+                      <p class="step-desc">Production go-live with full regulatory tracking and audit hashing active.</p>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>

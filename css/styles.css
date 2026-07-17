@@ -645,9 +645,9 @@ header.micro-cta-active .right-nav-actions .btn-ghost {
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: 95; /* On top of background layers, below modals */
+  z-index: 2; /* Moved to background, below content blocks so it never overlaps content */
   pointer-events: none;
-  opacity: 0.45;
+  opacity: 0.68; /* Increased opacity by ~20% to make it clearly visible */
 }
 
 #museum-canvas {
@@ -824,15 +824,15 @@ header.micro-cta-active .right-nav-actions .btn-ghost {
 
 
 /* Scene background color rhythm — restrained editorial palette */
-#scene-1 { background-color: #F7F5F2; }  /* Warm Ivory */
-#scene-2 { background-color: #FAFAF9; }  /* Warm White */
-#scene-3 { background-color: #F1EDE8; }  /* Soft Stone */
-#scene-4 { background-color: #15181C; }  /* ONLY dark section: Charcoal */
-#scene-5 { background-color: #FAFAF9; }  /* Warm White */
-#scene-6 { background-color: #F4F7F8; }  /* Soft Cool Grey */
-#scene-7 { background-color: #F7F5F2; }  /* Warm Ivory */
-#scene-8 { background-color: #F1EDE8; }  /* Soft Stone */
-#scene-9 { background-color: #FAFAF9; }  /* Pure Warm White */
+#scene-1 { background-color: transparent; }
+#scene-2 { background-color: transparent; }
+#scene-3 { background-color: transparent; }
+#scene-4 { background-color: #15181C; }  /* ONLY dark section: Charcoal remains solid */
+#scene-5 { background-color: transparent; }
+#scene-6 { background-color: transparent; }
+#scene-7 { background-color: transparent; }
+#scene-8 { background-color: transparent; }
+#scene-9 { background-color: transparent; }
 
 /* ─── Section canvas layers (cinematic per-section canvases) ─── */
 .section-particle-canvas {
@@ -2442,4 +2442,112 @@ footer {
   background: var(--status-resolved);
   border-color: var(--status-resolved);
   transform: scale(1) rotate(360deg);
+}
+
+/* Hero section resolution visualizer */
+.hero-resolution-visual {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  max-width: 1200px;
+  height: 480px;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.28; /* Subdued, non-noisy background layer */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 24px;
+  padding: 0 40px;
+}
+
+.hero-visual-track {
+  display: flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.5);
+  border: 1px solid rgba(225, 220, 212, 0.6);
+  border-radius: 12px;
+  padding: 8px 16px;
+  width: fit-content;
+  box-shadow: 0 4px 20px rgba(18, 18, 18, 0.02);
+  transform: translateX(-50px);
+  opacity: 0;
+  animation: slideTrackIn 1.5s var(--ease-spring) forwards;
+}
+
+/* Stagger entrance of the tracks */
+.hero-visual-track--1 { animation-delay: 0.2s; align-self: flex-start; margin-left: 5%; }
+.hero-visual-track--2 { animation-delay: 0.4s; align-self: flex-end; margin-right: 8%; }
+.hero-visual-track--3 { animation-delay: 0.6s; align-self: flex-start; margin-left: 8%; }
+.hero-visual-track--4 { animation-delay: 0.8s; align-self: flex-end; margin-right: 5%; }
+
+.hero-visual-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--accent-blue);
+  margin-right: 12px;
+  animation: visualPulse 2s infinite ease-in-out;
+}
+
+.hero-visual-ticket {
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.hero-visual-line {
+  width: 60px;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(22, 22, 22, 0.08) 0%, rgba(22, 22, 22, 0.02) 100%);
+  margin: 0 16px;
+}
+
+.hero-visual-status {
+  font-family: var(--font-sans);
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  padding: 3px 8px;
+  border-radius: 6px;
+}
+
+.status--resolved {
+  background: rgba(0, 195, 137, 0.08);
+  color: var(--status-resolved);
+  border: 1px solid rgba(0, 195, 137, 0.15);
+}
+
+.status--active {
+  background: rgba(255, 89, 100, 0.08);
+  color: var(--accent-blue);
+  border: 1px solid rgba(255, 89, 100, 0.15);
+  animation: activeStatusPulse 1.8s infinite ease-in-out;
+}
+
+/* Animations */
+@keyframes slideTrackIn {
+  from {
+    transform: translateX(-40px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes visualPulse {
+  0%, 100% { transform: scale(1); opacity: 0.6; }
+  50% { transform: scale(1.4); opacity: 1; }
+}
+
+@keyframes activeStatusPulse {
+  0%, 100% { opacity: 0.8; }
+  50% { opacity: 1; background-color: rgba(255, 89, 100, 0.15); }
 }

@@ -701,9 +701,9 @@ header.micro-cta-active .center-nav {
   display: none;
 }
 
-header.micro-cta-active .micro-cta-helper {
-  display: flex;
-}
+/* micro-cta-helper is superseded by the always-visible Calculate ROI /
+   Watch Azeon Live / Deploy Autonomous Pilot CTAs in .right-nav-actions —
+   showing both on scroll duplicated the same "simulate ROI" message. */
 
 /* The addictive CTA button is always visible; no hide-on-scroll rules needed. */
 

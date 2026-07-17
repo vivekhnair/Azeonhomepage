@@ -678,7 +678,8 @@ header.micro-cta-active .right-nav-actions .btn-ghost {
 /* Scroll track — 100vh so sections stack end-to-end with no empty spacing */
 .scene-scroll-track {
   position: relative;
-  height: 100vh;
+  min-height: 100vh;
+  height: auto;
   overflow: visible;
 }
 
@@ -686,13 +687,16 @@ header.micro-cta-active .right-nav-actions .btn-ghost {
 .museum-scene {
   position: relative;
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
+  height: auto;
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
+  overflow: visible;
   pointer-events: auto;
   will-change: transform;
+  padding: 120px 40px;
+  box-sizing: border-box;
 }
 
 /* Z-index stagger — next section layers over previous as you scroll */
@@ -3056,4 +3060,102 @@ footer {
   .lifecycle-steps {
     grid-template-columns: 1fr;
   }
+}
+
+/* Image 1: Database backlog queue row layout (Scene 2) */
+.ledger-sheet--pending .ledger-sheet-row {
+  display: grid;
+  grid-template-columns: 90px 1fr 100px;
+  gap: 12px;
+  align-items: center;
+  font-family: Menlo, Monaco, Consolas, monospace !important;
+  font-size: 0.76rem !important;
+  white-space: nowrap;
+}
+
+.ledger-sheet--pending .ledger-status--pending {
+  text-align: right;
+  color: var(--accent-blue);
+  font-weight: 700;
+}
+
+.ledger-db-op {
+  color: var(--text-muted);
+  font-weight: 700;
+}
+
+/* Image 2: Stacked layout for Scene 4 Decision Engine so it spans full width and fits any screen */
+#scene-4 .scene-content.editorial-grid {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 40px;
+}
+
+#scene-4 .text-block {
+  max-width: 760px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+#scene-4 .decision-evidence-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 24px;
+  margin-top: 16px;
+}
+
+#scene-4 .decision-evidence-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Image 3: SQL transaction log layout (Scene 5) */
+#scene-5 .ledger-sheet-row {
+  display: grid;
+  grid-template-columns: 110px 1fr;
+  gap: 16px;
+  align-items: start;
+  font-family: Menlo, Monaco, Consolas, monospace !important;
+  font-size: 0.76rem !important;
+  text-align: left;
+}
+
+#scene-5 .ledger-tag {
+  font-weight: 700;
+  color: var(--accent-blue);
+  white-space: nowrap;
+}
+
+#scene-5 .ledger-val {
+  color: var(--text-primary);
+  word-break: break-all;
+  white-space: normal;
+}
+
+/* Image 4: Count bar spacing and separator line (Scene 6) */
+.integration-count-bar {
+  margin-top: 36px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(22, 22, 22, 0.08);
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  text-align: left;
+}
+
+.integration-count-number {
+  font-family: var(--font-display);
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--accent-blue);
+  line-height: 1;
+}
+
+.integration-count-label {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.4;
 }

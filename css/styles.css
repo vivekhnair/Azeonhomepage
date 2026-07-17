@@ -678,7 +678,7 @@ header.micro-cta-active .right-nav-actions .btn-ghost {
 /* Scroll track — 100vh so sections stack end-to-end with no empty spacing */
 .scene-scroll-track {
   position: relative;
-  min-height: 100vh;
+  min-height: 70vh; /* Tighten up vertical scene bounds to minimize empty spaces */
   height: auto;
   overflow: visible;
 }
@@ -687,7 +687,7 @@ header.micro-cta-active .right-nav-actions .btn-ghost {
 .museum-scene {
   position: relative;
   width: 100%;
-  min-height: 100vh;
+  min-height: 70vh; /* Tighten up vertical scene bounds to minimize empty spaces */
   height: auto;
   display: flex;
   align-items: center;
@@ -695,12 +695,15 @@ header.micro-cta-active .right-nav-actions .btn-ghost {
   overflow: visible;
   pointer-events: auto;
   will-change: transform;
-  padding: 120px 40px;
+  padding: 70px 40px; /* Reduced vertical padding for tighter section spacing */
   box-sizing: border-box;
 }
 
 /* Z-index stagger — next section layers over previous as you scroll */
-#scene-1 { z-index: 10; }
+#scene-1 {
+  z-index: 10;
+  min-height: 100vh !important; /* Keep landing hero at full viewport size */
+}
 #scene-2 { z-index: 20; }
 #scene-3 { z-index: 30; }
 #scene-4 { z-index: 40; }
@@ -1623,7 +1626,7 @@ header.micro-cta-active .right-nav-actions .btn-ghost {
   font-size: 1.35rem;
   color: var(--text-secondary);
   margin-bottom: 48px;
-  max-width: 600px;
+  max-width: 780px; /* Expanded to prevent ugly wraps of words like 'conversations' */
   margin-left: auto;
   margin-right: auto;
 }
@@ -2970,10 +2973,11 @@ footer {
   background: #fff;
   border: 1px solid var(--border-subtle);
   border-radius: 10px;
-  padding: 10px 14px;
+  padding: 12px 16px;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  flex-direction: column; /* Stack name and metric vertically to prevent horizontal collisions */
+  align-items: flex-start;
+  gap: 4px;
 }
 
 .node-title {
@@ -3100,10 +3104,11 @@ footer {
 
 #scene-4 .decision-evidence-list {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 24px;
-  margin-top: 16px;
+  flex-direction: column !important; /* Keep items vertically stacked */
+  align-items: flex-start; /* Keep checkmarks vertically aligned */
+  max-width: fit-content; /* Squeeze to length of longest list item */
+  margin: 24px auto 0 auto; /* Center the checklist block horizontally on page */
+  gap: 12px;
 }
 
 #scene-4 .decision-evidence-item {

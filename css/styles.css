@@ -462,7 +462,7 @@ header.micro-cta-active .mega-menu-panel {
 .right-nav-actions {
   display: flex;
   align-items: center;
-  gap: 0;            /* Single CTA — no gap needed */
+  gap: 12px;
   flex-shrink: 0;
 }
 
@@ -678,6 +678,11 @@ header.micro-cta-active .micro-cta-helper {
 }
 
 /* The addictive CTA button is always visible; no hide-on-scroll rules needed. */
+
+header.micro-cta-active .right-nav-actions .roi-link,
+header.micro-cta-active .right-nav-actions .btn-ghost {
+  display: none;
+}
 
 /* Vertical Registry Timeline Index */
 .registry-timeline {

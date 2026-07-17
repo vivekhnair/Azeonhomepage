@@ -1,0 +1,943 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Azeon AI : Autonomous Customer Operations for Enterprise</title>
+  <meta name="description" content="Azeon AI resolves enterprise customer issues through deterministic reasoning and direct database execution. No loops. No delays. Decisive outcomes at scale.">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Azeon AI : Autonomous Customer Operations">
+  <meta property="og:description" content="Every customer issue. Resolved decisively. Enterprise-grade AI that executes database SOPs autonomously.">
+  <meta property="og:url" content="https://azeon.ai">
+  <meta property="og:site_name" content="Azeon AI">
+
+  <!-- Canonical -->
+  <link rel="canonical" href="https://azeon.ai/">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23005F73'/><text y='24' x='4' font-size='20' font-family='serif' fill='white'>A</text></svg>">
+
+  <!-- Google Fonts — preconnect for performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap">
+
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/motion.css">
+</head>
+<body>
+
+  <!-- Skip Navigation -->
+  <a href="#main-content" class="skip-nav-link">Skip to main content</a>
+
+  <!-- Top Telemetry Ticker -->
+  <div class="top-ticker-bar" role="marquee" aria-label="Live resolution telemetry">
+    <div class="ticker-wrapper"></div>
+  </div>
+
+  <!-- Sticky Navigation -->
+  <header role="banner">
+    <div class="header-container">
+      <div class="brand-wrapper">
+        <a href="/" class="brand-logo-link" aria-label="Azeon AI homepage">
+          <img src="assets/logo.png" alt="Azeon AI logo" class="brand-logo-img">
+        </a>
+      </div>
+
+      <nav aria-label="Main navigation">
+        <ul class="center-nav" role="list">
+
+          <li class="nav-item">
+            <a class="nav-link" role="button" tabindex="0" aria-haspopup="true" aria-expanded="false" aria-controls="menu-platform">Product</a>
+            <div id="menu-platform" class="mega-menu-panel" role="region" aria-label="Product menu">
+              <div class="mega-column">
+                <h4>Core Engine</h4>
+                <ul class="mega-list" role="list">
+                  <li><a class="mega-list-link watch-live-trigger" role="button" tabindex="0">Decision Engine</a></li>
+                  <li><a class="mega-list-link watch-live-trigger" role="button" tabindex="0">Action Engine</a></li>
+                  <li><a class="mega-list-link watch-live-trigger" role="button" tabindex="0">Reasoning Engine</a></li>
+                </ul>
+              </div>
+              <div class="mega-column">
+                <h4>Intelligence</h4>
+                <ul class="mega-list" role="list">
+                  <li><a class="mega-list-link watch-live-trigger" role="button" tabindex="0">Knowledge Sync</a></li>
+                  <li><a class="mega-list-link watch-live-trigger" role="button" tabindex="0">Governance Audit</a></li>
+                </ul>
+              </div>
+              <div class="mega-column">
+                <h4>Integrations</h4>
+                <ul class="mega-list" role="list">
+                  <li><a class="mega-list-link watch-live-trigger" role="button" tabindex="0">Salesforce Connector</a></li>
+                  <li><a class="mega-list-link watch-live-trigger" role="button" tabindex="0">Stripe Gateway</a></li>
+                  <li><a class="mega-list-link watch-live-trigger" role="button" tabindex="0">ServiceNow Bridge</a></li>
+                </ul>
+              </div>
+              <div class="mega-column">
+                <div class="mega-preview-card">
+                  <span>Interactive Overview</span>
+                  <p class="mega-preview-desc">Explore how Azeon executes database SOPs autonomously.</p>
+                  <a class="mega-list-link watch-live-trigger mega-cta-link" role="button" tabindex="0">Start Guided Tour &rarr;</a>
+                </div>
+              </div>
+            </div>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" role="button" tabindex="0" aria-haspopup="true" aria-expanded="false" aria-controls="menu-industries">Industries</a>
+            <div id="menu-industries" class="mega-menu-panel" role="region" aria-label="Industries menu">
+              <div class="mega-column">
+                <h4>Banking</h4>
+                <p class="mega-industry-desc">Automate credit adjustments under strict audit control schemas.</p>
+              </div>
+              <div class="mega-column">
+                <h4>Healthcare</h4>
+                <p class="mega-industry-desc">HIPAA-compliant processing with PII stripped on ingestion.</p>
+              </div>
+              <div class="mega-column">
+                <h4>Retail &amp; Commerce</h4>
+                <p class="mega-industry-desc">Shipping dispatch syncs and card refunds executed in seconds.</p>
+              </div>
+              <div class="mega-column">
+                <h4>Telecom</h4>
+                <p class="mega-industry-desc">SLA penalty allocations and billing reconciliations resolved autonomously.</p>
+              </div>
+            </div>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" role="button" tabindex="0" aria-haspopup="true" aria-expanded="false" aria-controls="menu-enterprise">Enterprise</a>
+            <div id="menu-enterprise" class="mega-menu-panel" role="region" aria-label="Enterprise menu">
+              <div class="mega-column">
+                <h4>Security</h4>
+                <ul class="mega-list" role="list">
+                  <li><a class="mega-list-link" tabindex="0">Data Isolation</a></li>
+                  <li><a class="mega-list-link" tabindex="0">HIPAA Safeguards</a></li>
+                  <li><a class="mega-list-link" tabindex="0">AES-256 Encryption</a></li>
+                </ul>
+              </div>
+              <div class="mega-column">
+                <h4>Governance</h4>
+                <ul class="mega-list" role="list">
+                  <li><a class="mega-list-link" tabindex="0">Audit Trail Records</a></li>
+                  <li><a class="mega-list-link" tabindex="0">Explainable Reasoning</a></li>
+                  <li><a class="mega-list-link" tabindex="0">SOC 2 Type II</a></li>
+                </ul>
+              </div>
+              <div class="mega-column">
+                <h4>Operations</h4>
+                <ul class="mega-list" role="list">
+                  <li><a class="mega-list-link" tabindex="0">ROI Benchmarks</a></li>
+                  <li><a class="mega-list-link" tabindex="0">Parallel Scale</a></li>
+                  <li><a class="mega-list-link" tabindex="0">Implementation Guide</a></li>
+                </ul>
+              </div>
+              <div class="mega-column">
+                <div class="mega-preview-card">
+                  <span>Security Overview</span>
+                  <p class="mega-preview-desc">SOC 2 Type II &middot; HIPAA &middot; ISO 27001 compliance architecture.</p>
+                </div>
+              </div>
+            </div>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" role="button" tabindex="0" aria-haspopup="true" aria-expanded="false" aria-controls="menu-resources">Resources</a>
+            <div id="menu-resources" class="mega-menu-panel" role="region" aria-label="Resources menu">
+              <div class="mega-column">
+                <h4>Experiences</h4>
+                <ul class="mega-list" role="list">
+                  <li><a class="mega-list-link watch-live-trigger" role="button" tabindex="0">Watch Azeon Live</a></li>
+                  <li><a class="mega-list-link readiness-trigger" role="button" tabindex="0">Readiness Assessment</a></li>
+                </ul>
+              </div>
+              <div class="mega-column">
+                <h4>Calculators</h4>
+                <ul class="mega-list" role="list">
+                  <li><a class="mega-list-link readiness-trigger" role="button" tabindex="0">ROI Calculator</a></li>
+                </ul>
+              </div>
+              <div class="mega-column">
+                <h4>Publications</h4>
+                <ul class="mega-list" role="list">
+                  <li><a class="mega-list-link blueprint-trigger" role="button" tabindex="0">Executive Blueprint</a></li>
+                  <li><a class="mega-list-link blueprint-trigger" role="button" tabindex="0">Operations Benchmark</a></li>
+                </ul>
+              </div>
+              <div class="mega-column">
+                <div class="mega-preview-card">
+                  <span>AI Readiness</span>
+                  <p class="mega-preview-desc">Evaluate your operational stack automation maturity in 5 questions.</p>
+                  <a class="mega-list-link readiness-trigger mega-cta-link" role="button" tabindex="0">Run Scorecard &rarr;</a>
+                </div>
+              </div>
+            </div>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" role="button" tabindex="0" aria-haspopup="true" aria-expanded="false" aria-controls="menu-company">Company</a>
+            <div id="menu-company" class="mega-menu-panel" role="region" aria-label="Company menu">
+              <div class="mega-column">
+                <h4>Corporate</h4>
+                <ul class="mega-list" role="list">
+                  <li><a class="mega-list-link" tabindex="0">About Azeon</a></li>
+                  <li><a class="mega-list-link" tabindex="0">Leadership Team</a></li>
+                </ul>
+              </div>
+              <div class="mega-column">
+                <h4>Growth</h4>
+                <ul class="mega-list" role="list">
+                  <li><a class="mega-list-link" tabindex="0">Careers</a></li>
+                  <li><a class="mega-list-link" tabindex="0">News &amp; Press</a></li>
+                </ul>
+              </div>
+              <div class="mega-column">
+                <h4>Get in Touch</h4>
+                <ul class="mega-list" role="list">
+                  <li><a class="mega-list-link" tabindex="0">Contact Sales</a></li>
+                  <li><a class="mega-list-link" tabindex="0">Partner Program</a></li>
+                </ul>
+              </div>
+              <div class="mega-column">
+                <p class="mega-company-note">Enterprise AI built by systems architects in San Francisco.</p>
+              </div>
+            </div>
+          </li>
+
+        </ul>
+      </nav>
+
+      <!-- Sticky Micro CTA helper -->
+      <div class="micro-cta-helper">
+        <span>Ready to eliminate resolution backlogs?</span>
+        <a class="micro-cta-link watch-live-trigger" role="button" tabindex="0">Simulate Autopilot ROI &rarr;</a>
+      </div>
+
+      <div class="right-nav-actions">
+        <a class="roi-link readiness-trigger" role="button" tabindex="0" aria-label="Open ROI Calculator">Calculate ROI</a>
+        <button class="btn-ghost watch-live-trigger" type="button">Watch Azeon Live</button>
+        <a href="https://calendly.com/azeon-ai/strategy" target="_blank" rel="noopener noreferrer" class="btn-filled-link">
+          <span>Deploy Autonomous Pilot</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Ambient glow -->
+  <div class="museum-ambient-glow" aria-hidden="true"></div>
+
+  <!-- Canvas Signal Threads -->
+  <div class="museum-canvas-layer" aria-hidden="true">
+    <canvas id="museum-canvas"></canvas>
+  </div>
+
+  <!-- ═══ MAIN CONTENT ═══ -->
+  <main id="main-content" class="main-page-flow">
+
+    <!-- Scene 01: Hero -->
+    <div class="scene-scroll-track">
+      <section id="scene-1" class="museum-scene" aria-labelledby="hero-headline">
+        <div class="scene-layer-bg" aria-hidden="true">
+          <div class="scene-depth-atmosphere scene-depth-atmosphere--1"></div>
+        </div>
+        <div class="scene-layer-mid" aria-hidden="true"></div>
+        <div class="scene-layer-fg">
+          <div class="scene-content invitation-container">
+            <div class="hero-trust-line">
+              SOC 2 Type II &nbsp;&middot;&nbsp; HIPAA &nbsp;&middot;&nbsp; ISO 27001 &nbsp;&middot;&nbsp; GDPR Ready
+            </div>
+            <h1 id="hero-headline">Every Customer Issue.<br>Resolved Decisively.</h1>
+            <p class="hero-subline">
+              The future of customer operations is not faster conversations.<br>
+              It is direct database resolution, executed autonomously, without human delay.
+            </p>
+            <div class="hero-cta-group">
+              <a href="https://calendly.com/azeon-ai/strategy" target="_blank" rel="noopener noreferrer" class="btn-filled-link" aria-label="Deploy an autonomous operational pilot">
+                <span>Deploy Autonomous Pilot</span>
+              </a>
+              <button class="btn-ghost watch-live-trigger" type="button" aria-label="Simulate Autopilot ROI">
+                Simulate Autopilot ROI
+              </button>
+            </div>
+            <p class="hero-micro-trust font-sans-label">30-minute executive session &middot; No commitment required</p>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- Trust Bar: Integration logos + outcome metrics -->
+    <div class="trust-bar-section" role="region" aria-label="Enterprise integrations and outcomes">
+      <div class="trust-bar-inner">
+        <p class="trust-bar-label">Integrated with the enterprise systems you already operate</p>
+        <div class="trust-logo-strip" aria-label="Supported integrations">
+          <span class="trust-logo">Salesforce</span>
+          <span class="trust-logo-divider" aria-hidden="true"></span>
+          <span class="trust-logo">Stripe</span>
+          <span class="trust-logo-divider" aria-hidden="true"></span>
+          <span class="trust-logo">Shopify</span>
+          <span class="trust-logo-divider" aria-hidden="true"></span>
+          <span class="trust-logo">ServiceNow</span>
+          <span class="trust-logo-divider" aria-hidden="true"></span>
+          <span class="trust-logo">Zendesk</span>
+          <span class="trust-logo-divider" aria-hidden="true"></span>
+          <span class="trust-logo">SAP</span>
+        </div>
+        <div class="trust-metrics-row">
+          <div class="trust-metric">
+            <span class="trust-metric-value">2.4s</span>
+            <span class="trust-metric-label">Average resolution time</span>
+          </div>
+          <div class="trust-metric-divider" aria-hidden="true"></div>
+          <div class="trust-metric">
+            <span class="trust-metric-value">96%</span>
+            <span class="trust-metric-label">First-contact resolution rate</span>
+          </div>
+          <div class="trust-metric-divider" aria-hidden="true"></div>
+          <div class="trust-metric">
+            <span class="trust-metric-value">67%</span>
+            <span class="trust-metric-label">Reduction in operations cost</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scene 02: The Problem -->
+    <div class="scene-scroll-track">
+      <section id="scene-2" class="museum-scene" aria-labelledby="scene2-headline">
+        <div class="scene-layer-bg" aria-hidden="true">
+          <div class="scene-depth-atmosphere scene-depth-atmosphere--2"></div>
+        </div>
+        <div class="scene-layer-mid" aria-hidden="true"></div>
+        <div class="scene-layer-fg">
+          <div class="scene-content editorial-grid">
+            <div class="text-block">
+              <div class="badge">The Problem</div>
+              <h2 id="scene2-headline">The Chatbot That<br><em>Cannot Execute</em></h2>
+              <p>Every generative AI assistant in customer operations has the same failure mode. It empathises. It apologises. It suggests. But it cannot reach into your database and resolve the issue. Backlogs grow. Costs compound.</p>
+              <div class="section-cta-group">
+                <button class="btn-ghost readiness-trigger" type="button">Audit My Operations Backlog &rarr;</button>
+              </div>
+            </div>
+            <div class="ledger-sheet ledger-sheet--pending" role="region" aria-label="Unresolved ticket backlog">
+              <div class="ledger-sheet-title ledger-title--pending">
+                <span>UNRESOLVED BACKLOG</span>
+                <span>12,840 TICKETS</span>
+              </div>
+              <div class="ledger-sheet-row ledger-row--pending">
+                <span>LOG #1209: Duplicate billing dispute (Enterprise account)</span>
+                <span class="ledger-status--pending">UNRESOLVED</span>
+              </div>
+              <div class="ledger-sheet-row ledger-row--pending">
+                <span>LOG #1210: Invoice SKU mismatch ($4,200 discrepancy)</span>
+                <span class="ledger-status--pending">UNRESOLVED</span>
+              </div>
+              <div class="ledger-sheet-row ledger-row--pending">
+                <span>LOG #1211: PII credential strip timeout on patient record</span>
+                <span class="ledger-status--pending">UNRESOLVED</span>
+              </div>
+              <div class="ledger-sheet-row ledger-row--pending">
+                <span>LOG #1212: Refund pending compliance authorisation</span>
+                <span class="ledger-status--pending">UNRESOLVED</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- Scene 03: How It Works — Ingestion -->
+    <div class="scene-scroll-track">
+      <section id="scene-3" class="museum-scene" aria-labelledby="scene3-headline">
+        <div class="scene-layer-bg" aria-hidden="true">
+          <div class="scene-depth-atmosphere scene-depth-atmosphere--3"></div>
+        </div>
+        <div class="scene-layer-mid" aria-hidden="true"></div>
+        <div class="scene-layer-fg">
+          <div class="scene-content editorial-grid reverse-grid">
+            <div class="lexical-text-box" role="region" aria-label="Live signal ingestion example">
+              Incoming request: <span class="highlight-span span-sentiment">&ldquo;I received a duplicate charge&rdquo;</span>. Please <span class="highlight-span span-catalog">check invoice invoice-824</span> as soon as possible and <span class="highlight-span span-intent">execute standard billing adjustment</span>.
+            </div>
+            <div class="text-block">
+              <div class="badge">How It Works</div>
+              <h2 id="scene3-headline">From Unstructured<br><em>to Executable.</em></h2>
+              <p>Azeon intercepts customer requests across every channel and converts unstructured language into validated, executable parameters, extracting intent, account references, and compliance context in milliseconds.</p>
+              <div class="lexical-legend" role="list" aria-label="Signal classification legend">
+                <div class="legend-item legend-item--sentiment" role="listitem">
+                  <span class="legend-tick" aria-hidden="true">&#10003;</span>
+                  <span>Sentiment signal detected</span>
+                </div>
+                <div class="legend-item legend-item--catalog" role="listitem">
+                  <span class="legend-tick" aria-hidden="true">&#10003;</span>
+                  <span>Account reference identified</span>
+                </div>
+                <div class="legend-item legend-item--intent" role="listitem">
+                  <span class="legend-tick" aria-hidden="true">&#10003;</span>
+                  <span>Executable intent resolved</span>
+                </div>
+              </div>
+              <div class="section-cta-group">
+                <button class="btn-ghost watch-live-trigger" type="button">See Parameter Mapping &rarr;</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- Scene 04: Decision — CHARCOAL (only dark scene) -->
+    <div class="scene-scroll-track">
+      <section id="scene-4" class="museum-scene scene-charcoal" aria-labelledby="scene4-headline">
+        <div class="scene-layer-bg" aria-hidden="true">
+          <div class="charcoal-gradient-layer"></div>
+          <div class="scene-depth-atmosphere scene-depth-atmosphere--4"></div>
+        </div>
+        <div class="scene-layer-mid" aria-hidden="true">
+          <div class="scene-mid-particles scene-mid-particles--dark"></div>
+        </div>
+        <div class="scene-layer-fg">
+          <div class="scene-content editorial-grid">
+            <div class="text-block">
+              <div class="badge">Deterministic Reasoning</div>
+              <h2 id="scene4-headline">One Valid Path.<br><em>Executed Precisely.</em></h2>
+              <p>Azeon maps each parameter against your corporate policy library, determining a single, auditable execution flow. No hallucination. No ambiguity. Every decision is explainable and logged.</p>
+              <div class="decision-evidence-list">
+                <div class="decision-evidence-item">
+                  <span class="decision-evidence-icon" aria-hidden="true">&#10003;</span>
+                  <span>Policy validation against compliance ruleset</span>
+                </div>
+                <div class="decision-evidence-item">
+                  <span class="decision-evidence-icon" aria-hidden="true">&#10003;</span>
+                  <span>Single deterministic outcome, with no branching ambiguity</span>
+                </div>
+                <div class="decision-evidence-item">
+                  <span class="decision-evidence-icon" aria-hidden="true">&#10003;</span>
+                  <span>Full audit trail committed to tamper-proof ledger</span>
+                </div>
+              </div>
+            </div>
+            <div class="decision-panel" role="region" aria-label="Interactive decision engine demonstration">
+              <div class="decision-issue" role="status">
+                <span class="decision-issue-label">ACTIVE TASK</span>
+                <span class="decision-issue-text">Resolve duplicate billing on invoice-824 (Enterprise Account #E-7291)</span>
+              </div>
+              <div class="decision-triggers">
+                <button class="decision-btn" type="button" id="decision-trigger-btn" aria-label="Execute billing adjustment SOP">
+                  Execute Billing Adjustment SOP
+                </button>
+              </div>
+              <div class="reasoning-pathways" aria-live="polite" role="log" aria-label="Decision reasoning trace">
+                <div class="reasoning-line reasoning-line--waiting">Awaiting SOP execution trigger...</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- Scene 05: Execution -->
+    <div class="scene-scroll-track">
+      <section id="scene-5" class="museum-scene" aria-labelledby="scene5-headline">
+        <div class="scene-layer-bg" aria-hidden="true">
+          <div class="scene-depth-atmosphere scene-depth-atmosphere--5"></div>
+        </div>
+        <div class="scene-layer-mid" aria-hidden="true"></div>
+        <div class="scene-layer-fg">
+          <div class="scene-content editorial-grid reverse-grid">
+            <div class="ledger-sheet" role="region" aria-label="Resolved transaction ledger">
+              <div class="ledger-sheet-title">
+                <span>TRANSACTION LEDGER</span>
+                <span class="ledger-status-badge">RESOLVED</span>
+              </div>
+              <div class="ledger-sheet-row">
+                <span class="ledger-tag">ACCOUNT</span>
+                <span class="ledger-val">Enterprise #E-7291 &middot; invoice-824</span>
+              </div>
+              <div class="ledger-sheet-row">
+                <span class="ledger-tag">DEDUCTED ERROR</span>
+                <span class="ledger-val">$2,400.00 USD</span>
+              </div>
+              <div class="ledger-sheet-row">
+                <span class="ledger-tag">COMPLIANCE CODE</span>
+                <span class="ledger-val">ISO-27001-A &middot; SOC2-CC6.1</span>
+              </div>
+              <div class="ledger-sheet-row">
+                <span class="ledger-tag">RESOLUTION TIME</span>
+                <span class="ledger-val">2.4 seconds</span>
+              </div>
+              <div class="ledger-sheet-row">
+                <span class="ledger-tag">STRIPE RESPONSE</span>
+                <span class="ledger-val ledger-val--resolved">REFUND AUTHORIZED</span>
+              </div>
+              <div class="ledger-sheet-row">
+                <span class="ledger-tag">SALESFORCE SYNC</span>
+                <span class="ledger-val ledger-val--resolved">CASE CLOSED &middot; LOGGED</span>
+              </div>
+            </div>
+            <div class="text-block">
+              <div class="badge">Direct Execution</div>
+              <h2 id="scene5-headline">Database Action.<br><em>Zero Delay.</em></h2>
+              <p>Resolution writes directly to your systems of record. Azeon authorises Stripe refunds, updates Salesforce cases, and closes tickets autonomously, compliantly, and without a human in the loop.</p>
+              <div class="section-cta-group">
+                <button class="btn-ghost blueprint-trigger" type="button">View Database Integration Blueprint &rarr;</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- Scene 06: Scale — HTML FIXED -->
+    <div class="scene-scroll-track">
+      <section id="scene-6" class="museum-scene" aria-labelledby="scene6-headline">
+        <div class="scene-layer-bg" aria-hidden="true">
+          <div class="scene-depth-atmosphere scene-depth-atmosphere--6"></div>
+        </div>
+        <div class="scene-layer-mid" aria-hidden="true"></div>
+        <div class="scene-layer-fg">
+          <div class="scene-content editorial-grid">
+            <div class="text-block">
+              <div class="badge">Enterprise Scale</div>
+              <h2 id="scene6-headline">Every System.<br><em>Orchestrated.</em></h2>
+              <p>Azeon synchronises active state across your entire enterprise stack, CRM, ERP, payment gateways, and ticketing systems, simultaneously and in real time. Thousands of resolutions per minute. Every one auditable.</p>
+              <div class="integration-count-bar">
+                <span class="integration-count-number">40+</span>
+                <span class="integration-count-label">Enterprise system connectors available</span>
+              </div>
+            </div>
+            <div class="orbital-universe-container" role="img" aria-label="Azeon hub connecting Salesforce, Stripe, Shopify, ServiceNow, SAP">
+              <div class="orbital-visualizer">
+                <div class="orbital-hub" aria-hidden="true">AZEON</div>
+                <div class="orbital-ring orbital-ring-1" aria-hidden="true">
+                  <div class="orbital-satellite sat-salesforce">Salesforce</div>
+                </div>
+                <div class="orbital-ring orbital-ring-2" aria-hidden="true">
+                  <div class="orbital-satellite sat-stripe">Stripe</div>
+                  <div class="orbital-satellite sat-shopify">Shopify</div>
+                </div>
+                <div class="orbital-ring orbital-ring-3" aria-hidden="true">
+                  <div class="orbital-satellite sat-servicenow">ServiceNow</div>
+                  <div class="orbital-satellite sat-sap">SAP</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- Social Proof Section -->
+    <div class="proof-section" role="region" aria-labelledby="proof-headline">
+      <div class="proof-section-inner">
+        <div class="proof-header">
+          <div class="badge">Operational Outcomes</div>
+          <h2 id="proof-headline" class="proof-headline">The result is always<br>the <em>same certainty.</em></h2>
+          <p class="proof-subline">Enterprise operations teams deploy Azeon to eliminate resolution backlogs, reduce costs, and restore customer trust at scale.</p>
+        </div>
+
+        <div class="proof-cards-grid">
+          <article class="proof-card">
+            <div class="proof-card-industry">Global Retail Enterprise</div>
+            <blockquote class="proof-quote">
+              &ldquo;We reduced average billing dispute resolution from 4.2 days to under 3 seconds. Azeon handles what used to require a dedicated team.&rdquo;
+            </blockquote>
+            <div class="proof-card-meta">
+              <div class="proof-card-role">VP of Customer Operations</div>
+              <div class="proof-metric-chip">
+                <span class="proof-metric-value">4.2 days &rarr; 2.4s</span>
+                <span class="proof-metric-label">Resolution time</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="proof-card proof-card--featured">
+            <div class="proof-card-industry">Tier-1 Healthcare Provider</div>
+            <blockquote class="proof-quote">
+              &ldquo;96% of patient account inquiries now resolve autonomously, HIPAA-compliant, with a full audit trail on every transaction.&rdquo;
+            </blockquote>
+            <div class="proof-card-meta">
+              <div class="proof-card-role">Chief Customer Officer</div>
+              <div class="proof-metric-chip proof-metric-chip--teal">
+                <span class="proof-metric-value">96%</span>
+                <span class="proof-metric-label">Autonomous resolution</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="proof-card">
+            <div class="proof-card-industry">Enterprise B2B SaaS Platform</div>
+            <blockquote class="proof-quote">
+              &ldquo;67% reduction in support operations cost within the first 90 days. The ROI case was self-evident before end of Q1.&rdquo;
+            </blockquote>
+            <div class="proof-card-meta">
+              <div class="proof-card-role">Head of Customer Experience</div>
+              <div class="proof-metric-chip">
+                <span class="proof-metric-value">67%</span>
+                <span class="proof-metric-label">Cost reduction</span>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <p class="proof-disclaimer">Outcomes representative of enterprise deployments. Specific results depend on implementation scope and ticket volume.</p>
+      </div>
+    </div>
+
+    <!-- Scene 07: ROI Calculator -->
+    <div class="scene-scroll-track">
+      <section id="scene-7" class="museum-scene" aria-labelledby="scene7-headline">
+        <div class="scene-layer-bg" aria-hidden="true">
+          <div class="coolgrey-gradient-layer"></div>
+          <div class="scene-depth-atmosphere scene-depth-atmosphere--7"></div>
+        </div>
+        <div class="scene-layer-mid" aria-hidden="true"></div>
+        <div class="scene-layer-fg">
+          <div class="scene-content">
+            <div class="calculator-wrapper" role="region" aria-label="Operational cost comparison calculator">
+              <div class="calculator-header">
+                <div class="calculator-title">
+                  <div class="badge">Business Impact</div>
+                  <h3 id="scene7-headline">Compare Operational Economics</h3>
+                  <p>Adjust monthly inquiry volume to model your cost structure.</p>
+                </div>
+                <div class="ticket-slider-container">
+                  <div class="slider-label">
+                    <label for="ticket-volume-slider" class="slider-label-text">Monthly Customer Inquiries:</label>
+                    <span class="ticket-count-val" aria-live="polite" aria-atomic="true">25,000</span>
+                  </div>
+                  <input
+                    type="range"
+                    id="ticket-volume-slider"
+                    min="5000"
+                    max="100000"
+                    value="25000"
+                    step="5000"
+                    class="ticket-slider"
+                    aria-label="Monthly inquiry volume"
+                    aria-valuemin="5000"
+                    aria-valuemax="100000"
+                    aria-valuenow="25000"
+                  >
+                </div>
+              </div>
+              <div class="cost-grid">
+                <div class="cost-card">
+                  <h4>Legacy Human Support</h4>
+                  <div class="cost-amount cost-legacy-val" aria-live="polite">$300,000</div>
+                  <div class="cost-desc">Blended agent cost at approximately $12 per ticket, including overhead, training, and attrition.</div>
+                </div>
+                <div class="cost-card">
+                  <h4>Generic AI Copilots</h4>
+                  <div class="cost-amount cost-comp-val" aria-live="polite">$112,500</div>
+                  <div class="cost-desc">Estimated at $4.50 per ticket including API usage, platform licensing, and human-in-loop overhead costs.</div>
+                </div>
+                <div class="cost-card highlight">
+                  <h4>Azeon Autonomous</h4>
+                  <div class="cost-amount cost-azeon-val" aria-live="polite">$10,000</div>
+                  <div class="cost-desc">Outcome-only pricing at $0.40 per resolved ticket. No platform fees. No agent staffing overhead.</div>
+                </div>
+              </div>
+              <div class="calculator-footnote">
+                <p class="calculator-assumption">
+                  Illustrative estimates based on industry benchmark data. Actual costs depend on ticket complexity, integration scope, and contract terms.&nbsp;
+                  <button class="btn-text-link readiness-trigger" type="button">Request a personalised analysis &rarr;</button>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- Scene 08: Governance -->
+    <div class="scene-scroll-track">
+      <section id="scene-8" class="museum-scene" aria-labelledby="scene8-headline">
+        <div class="scene-layer-bg" aria-hidden="true">
+          <div class="scene-depth-atmosphere scene-depth-atmosphere--8"></div>
+        </div>
+        <div class="scene-layer-mid" aria-hidden="true"></div>
+        <div class="scene-layer-fg">
+          <div class="scene-content editorial-grid">
+            <div class="text-block">
+              <div class="badge">Enterprise Security</div>
+              <h2 id="scene8-headline">Governance You Can<br><em>Demonstrate.</em></h2>
+              <p>Azeon meets the security and compliance requirements of enterprise procurement. Data isolation, credential stripping, and tamper-proof audit trails are architectural foundations, not optional features.</p>
+              <div class="compliance-badge-row" role="list" aria-label="Compliance certifications">
+                <div class="compliance-badge" role="listitem">SOC 2<br>Type II</div>
+                <div class="compliance-badge" role="listitem">HIPAA<br>Compliant</div>
+                <div class="compliance-badge" role="listitem">ISO<br>27001</div>
+                <div class="compliance-badge" role="listitem">GDPR<br>Ready</div>
+              </div>
+              <div class="section-cta-group">
+                <a href="https://calendly.com/azeon-ai/security" target="_blank" rel="noopener noreferrer" class="btn-filled-link" aria-label="Review Azeon security architecture">
+                  <span>Review Security Control Architecture</span>
+                </a>
+              </div>
+            </div>
+            <div class="governance-sheet" role="region" aria-label="Security audit protocol status">
+              <div class="vault-header">
+                <div class="vault-badge-indicator">
+                  <span class="vault-status-dot" aria-hidden="true"></span>
+                  <span>SECURE AUDIT PROTOCOL ACTIVE</span>
+                </div>
+                <span class="vault-seal">SOC 2 TYPE II</span>
+              </div>
+              <div class="governance-sheet-section">
+                <div class="gov-sec-title">1.1 : Data Isolation</div>
+                <div class="gov-sec-desc">Annual third-party assessments verify complete credential protection and network-layer isolation across all tenant environments.</div>
+              </div>
+              <div class="governance-sheet-section">
+                <div class="gov-sec-title">1.2 : HIPAA Compliance</div>
+                <div class="gov-sec-desc">PII shielding modules strip patient identifiers before any transaction routes to processing APIs. Compliant by architecture, not configuration.</div>
+              </div>
+              <div class="governance-sheet-section">
+                <div class="gov-sec-title">1.3 : Explainable Audit Trail</div>
+                <div class="gov-sec-desc">Every decision is committed to an immutable ledger with full reasoning trace, policy version reference, and timestamp. Queryable by compliance teams at any time.</div>
+              </div>
+              <div class="vault-terminal" role="log" aria-label="Encrypted telemetry stream status">
+                <div class="vault-terminal-title">ENCRYPTED TELEMETRY STREAM [AES-256]</div>
+                <div class="vault-terminal-stream">
+                  <div class="vault-stream-line">&bull; ESTABLISHING SECURE TLS HANDSHAKE... [COMPLETED]</div>
+                  <div class="vault-stream-line">&bull; PARSING TRANSACTIONS | REDACTING PII PHASES... [OK]</div>
+                  <div class="vault-stream-line">&bull; AUDIT REPORT COMMITTED TO TAMPER-PROOF LEDGER... [AUTHORIZED]</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- Scene 09: Final CTA -->
+    <div class="scene-scroll-track">
+      <section id="scene-9" class="museum-scene" aria-labelledby="final-cta-headline">
+        <div class="scene-layer-bg" aria-hidden="true">
+          <div class="scene-depth-atmosphere scene-depth-atmosphere--9"></div>
+        </div>
+        <div class="scene-layer-mid" aria-hidden="true"></div>
+        <div class="scene-layer-fg">
+          <div class="scene-content final-cta-container">
+            <div class="badge">Ready to begin?</div>
+            <h2 id="final-cta-headline" class="final-cta-headline">Every Customer Issue.<br>Resolved Decisively.</h2>
+            <p class="supporting-line">The future of customer operations is not faster conversations.<br>It is better decisions, made autonomously, at enterprise scale.</p>
+            <div class="final-cta-buttons">
+              <a href="https://calendly.com/azeon-ai/strategy" target="_blank" rel="noopener noreferrer" class="btn-filled-link btn-filled-link--large" aria-label="Deploy an autonomous operational pilot">
+                <span>Deploy Autonomous Pilot</span>
+              </a>
+              <button class="btn-ghost btn-ghost--large watch-live-trigger" type="button">Simulate Autopilot ROI</button>
+              <button class="roi-link readiness-trigger" type="button" aria-label="Calculate cost reduction">
+                Calculate Cost Reduction &rarr;
+              </button>
+            </div>
+            <p class="final-micro-trust">30-minute session &nbsp;&middot;&nbsp; No commitment &nbsp;&middot;&nbsp; Tailored to your enterprise stack</p>
+          </div>
+        </div>
+      </section>
+    </div>
+
+  </main>
+
+  <!-- ═══ FOOTER ═══ -->
+  <footer role="contentinfo">
+    <div class="footer-content">
+      <div class="footer-statement">
+        <h2 class="footer-headline">Customer Operations.<br>Made Certain.</h2>
+        <p class="footer-sub">Azeon coordinates secure transaction logic and direct database resolution, eliminating operational friction for global enterprises.</p>
+        <div class="footer-cta-row">
+          <a href="https://calendly.com/azeon-ai/strategy" target="_blank" rel="noopener noreferrer" class="btn-filled-link btn-filled-link--footer">
+            <span>Deploy Autonomous Pilot</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="footer-columns">
+        <div class="footer-col">
+          <h4>Product</h4>
+          <ul class="footer-list" role="list">
+            <li><a class="footer-list-link watch-live-trigger" role="button" tabindex="0">Decision Engine</a></li>
+            <li><a class="footer-list-link watch-live-trigger" role="button" tabindex="0">Action Engine</a></li>
+            <li><a class="footer-list-link watch-live-trigger" role="button" tabindex="0">Reasoning Engine</a></li>
+            <li><a class="footer-list-link watch-live-trigger" role="button" tabindex="0">Knowledge Sync</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Enterprise</h4>
+          <ul class="footer-list" role="list">
+            <li><a class="footer-list-link" tabindex="0">Data Security</a></li>
+            <li><a class="footer-list-link" tabindex="0">Governance Records</a></li>
+            <li><a class="footer-list-link" tabindex="0">HIPAA Safeguards</a></li>
+            <li><a class="footer-list-link" tabindex="0">Integration API</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Resources</h4>
+          <ul class="footer-list" role="list">
+            <li><a class="footer-list-link watch-live-trigger" role="button" tabindex="0">Watch Azeon Live</a></li>
+            <li><a class="footer-list-link readiness-trigger" role="button" tabindex="0">Readiness Assessment</a></li>
+            <li><a class="footer-list-link blueprint-trigger" role="button" tabindex="0">Executive Blueprint</a></li>
+            <li><a class="footer-list-link" tabindex="0">Case Studies</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Company</h4>
+          <ul class="footer-list" role="list">
+            <li><a class="footer-list-link" tabindex="0">About Azeon</a></li>
+            <li><a class="footer-list-link" tabindex="0">Leadership Team</a></li>
+            <li><a class="footer-list-link" tabindex="0">Partners Program</a></li>
+            <li><a class="footer-list-link" tabindex="0">Contact Sales</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>&copy; 2026 Azeon AI. All rights reserved.</span>
+        <div class="footer-compliance-row" role="list" aria-label="Compliance certifications">
+          <span class="footer-compliance-badge" role="listitem">SOC 2</span>
+          <span class="footer-compliance-badge" role="listitem">HIPAA</span>
+          <span class="footer-compliance-badge" role="listitem">ISO 27001</span>
+          <span class="footer-compliance-badge" role="listitem">GDPR Ready</span>
+        </div>
+        <div class="footer-legal-links">
+          <a class="footer-legal-link" tabindex="0">Privacy Policy</a>
+          <a class="footer-legal-link" tabindex="0">Terms of Service</a>
+          <a class="footer-legal-link" tabindex="0">Security</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ═══ MODALS ═══ -->
+
+  <!-- Tour Modal -->
+  <div id="tour-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="tour-modal-title" aria-hidden="true">
+    <div class="modal-content">
+      <button class="close-btn" type="button" aria-label="Close guided tour">&#10005;</button>
+      <div class="guided-tour-body">
+        <div class="badge">Guided Product Tour</div>
+        <h3 id="tour-modal-title">See Azeon Resolve in Real Time</h3>
+        <div class="tour-slide active">
+          <h4>1. Parse Unstructured Request</h4>
+          <p class="tour-slide-desc">Azeon intercepts customer requests across email and ticketing systems, converting language into validated intent parameters in milliseconds.</p>
+        </div>
+        <div class="tour-slide">
+          <h4>2. Deterministic Policy Check</h4>
+          <p class="tour-slide-desc">The Decision Engine maps each parameter against your corporate policy library, producing a single, auditable resolution path with no ambiguity.</p>
+        </div>
+        <div class="tour-slide">
+          <h4>3. Direct Database Execution</h4>
+          <p class="tour-slide-desc">Azeon writes directly to Stripe, Salesforce, and your systems of record, refunding balances, closing tickets, logging every action compliantly.</p>
+        </div>
+        <div class="tour-controls">
+          <button id="tour-prev" class="btn-ghost" type="button">Back</button>
+          <button id="tour-next" class="btn-filled-btn" type="button">Next &rarr;</button>
+        </div>
+        <div class="tour-book-cta">
+          <a href="https://calendly.com/azeon-ai/strategy" target="_blank" rel="noopener noreferrer" class="btn-filled-link btn-filled-link--full">
+            <span>Book Full Enterprise Demo</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Assessment Drawer -->
+  <div id="assessment-drawer" class="drawer-overlay" role="dialog" aria-modal="true" aria-labelledby="assessment-title" aria-hidden="true">
+    <div class="drawer-content">
+      <button class="close-btn" type="button" aria-label="Close readiness assessment">&#10005;</button>
+      <div class="badge">AI Readiness Assessment</div>
+      <h3 id="assessment-title">Evaluate Your Automation Maturity</h3>
+      <p class="drawer-sub">5 questions. 3 minutes. A score that maps your organisation's readiness for autonomous resolution.</p>
+
+      <div class="assessment-body">
+        <div class="question-card active">
+          <h4>1. What is your monthly inquiry volume?</h4>
+          <button class="option-btn" type="button" data-score="10">Under 10,000 inquiries per month</button>
+          <button class="option-btn" type="button" data-score="15">10,000 to 50,000 inquiries per month</button>
+          <button class="option-btn" type="button" data-score="20">Over 50,000 inquiries per month</button>
+        </div>
+        <div class="question-card">
+          <h4>2. How are support policies currently documented?</h4>
+          <button class="option-btn" type="button" data-score="10">Manual PDF and tribal knowledge</button>
+          <button class="option-btn" type="button" data-score="15">Partially digital knowledge base</button>
+          <button class="option-btn" type="button" data-score="20">Centralised, structured policy database</button>
+        </div>
+        <div class="question-card">
+          <h4>3. Which systems does your team primarily use?</h4>
+          <button class="option-btn" type="button" data-score="10">Email or legacy helpdesk only</button>
+          <button class="option-btn" type="button" data-score="15">Salesforce Service Cloud or Zendesk</button>
+          <button class="option-btn" type="button" data-score="20">Custom ERP and database APIs</button>
+        </div>
+        <div class="question-card">
+          <h4>4. What are your compliance requirements?</h4>
+          <button class="option-btn" type="button" data-score="10">Standard access controls</button>
+          <button class="option-btn" type="button" data-score="15">SOC 2 / GDPR / ISO 27001</button>
+          <button class="option-btn" type="button" data-score="20">HIPAA (isolated tenant databases)</button>
+        </div>
+        <div class="question-card">
+          <h4>5. Current level of AI automation in support?</h4>
+          <button class="option-btn" type="button" data-score="10">None (purely human-operated)</button>
+          <button class="option-btn" type="button" data-score="15">AI suggestion copilots for agents</button>
+          <button class="option-btn" type="button" data-score="20">Some autonomous transaction execution</button>
+        </div>
+        <div class="assessment-result" aria-live="polite">
+          <h3>Your AI Readiness Score</h3>
+          <div id="score-val" class="score-display">...</div>
+          <p class="score-interpretation" id="score-interpretation"></p>
+          <p class="score-context">High-readiness organisations typically achieve full deployment within 6 to 8 weeks.</p>
+          <a href="https://calendly.com/azeon-ai/strategy" target="_blank" rel="noopener noreferrer" class="btn-filled-link btn-filled-link--full">
+            <span>Schedule Strategy Session</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Executive Blueprint Modal -->
+  <div id="blueprint-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="blueprint-modal-title" aria-hidden="true">
+    <div class="modal-content modal-content--narrow">
+      <button class="close-btn" type="button" aria-label="Close blueprint modal">&#10005;</button>
+      <div class="badge">Digital Publication</div>
+      <h3 id="blueprint-modal-title">Executive Blueprint: The Future of Customer Operations</h3>
+      <p class="modal-desc">
+        A 24-page analytical guide mapping outcome-based automation economics, enterprise security credentials, and integration architecture frameworks.
+      </p>
+      <ul class="blueprint-contents" aria-label="Blueprint contents">
+        <li>Customer operations cost benchmarking by industry vertical</li>
+        <li>The deterministic AI advantage over generative models</li>
+        <li>Security architecture and compliance framework overview</li>
+        <li>90-day deployment and ROI realisation timeline</li>
+      </ul>
+      <form class="assurance-form" id="blueprint-form" novalidate>
+        <div class="form-field">
+          <label for="blueprint-email" class="form-label">Corporate email address</label>
+          <input
+            type="email"
+            id="blueprint-email"
+            name="email"
+            placeholder="you@enterprise.com"
+            class="assurance-input"
+            required
+            autocomplete="email"
+            aria-required="true"
+            aria-describedby="blueprint-hint"
+          >
+          <span id="blueprint-hint" class="form-hint">One email delivery. No sequences. No spam.</span>
+        </div>
+        <button type="submit" class="btn-filled-link btn-filled-link--full" aria-label="Download Executive Blueprint">
+          <span>Download Executive Blueprint &rarr;</span>
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Scripts — deferred for performance -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" defer></script>
+  <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js" defer></script>
+  <script src="js/webgl.js" defer></script>
+  <script src="js/motion.js" defer></script>
+  <script src="js/main.js" defer></script>
+
+</body>
+</html>

@@ -1,0 +1,602 @@
+/* ==========================================================================
+   AZEON AI — PREMIUM MOTION SYSTEM
+   Every element eases. Nothing snaps. Motion feels intentional.
+   ========================================================================== */
+
+/* ── Motion timing tokens ── */
+:root {
+  --ease-magnetic:  cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-spring:    cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-breathe:   cubic-bezier(0.45, 0, 0.55, 1);
+  --ease-out-expo:  cubic-bezier(0.19, 1, 0.22, 1);
+  --ease-in-back:   cubic-bezier(0.36, 0, 0.66, -0.56);
+
+  --duration-snap:   200ms;
+  --duration-fast:   300ms;
+  --duration-base:   500ms;
+  --duration-slow:   800ms;
+  --duration-drift:  1800ms;
+
+  /* Glow tokens — warm teal palette */
+  --glow-blue:   0 0 16px rgba(0,95,115,0.18), 0 0 32px rgba(0,95,115,0.08);
+  --glow-teal:   0 0 18px rgba(0,166,166,0.22), 0 0 36px rgba(0,166,166,0.09);
+  --glow-white:  0 0 20px rgba(255,255,255,0.40);
+}
+
+/* ══════════════════════════════════════════════════════════════
+   KEYFRAME LIBRARY
+   ══════════════════════════════════════════════════════════════ */
+
+/* Breathing — barely perceptible, very gentle */
+@keyframes breathe {
+  0%, 100% { transform: scale(1); }
+  50%       { transform: scale(1.008); }
+}
+
+/* Soft float — very gentle vertical drift */
+@keyframes softFloat {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-4px); }
+}
+
+/* Pulse glow — teal, very restrained */
+@keyframes pulseGlow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(0,95,115,0); }
+  50%       { box-shadow: 0 0 0 6px rgba(0,95,115,0.06), 0 0 18px rgba(0,95,115,0.08); }
+}
+
+/* Teal pulse glow */
+@keyframes pulseGlowTeal {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(0,166,166,0); }
+  50%       { box-shadow: 0 0 0 6px rgba(0,166,166,0.07), 0 0 22px rgba(0,166,166,0.10); }
+}
+
+/* Hub core pulse — teal */
+@keyframes hubPulse {
+  0%, 100% {
+    box-shadow: 0 0 18px rgba(0,95,115,0.18),
+                0 0 0 0 rgba(0,95,115,0);
+    border-color: rgba(255,255,255,0.18);
+  }
+  50% {
+    box-shadow: 0 0 32px rgba(0,166,166,0.35),
+                0 0 0 8px rgba(0,166,166,0.05);
+    border-color: rgba(0,166,166,0.55);
+  }
+}
+
+/* Badge shimmer */
+@keyframes badgeShimmer {
+  0%, 100% { opacity: 0.7; letter-spacing: 0.08em; }
+  50%       { opacity: 1;   letter-spacing: 0.09em; }
+}
+
+/* Card breath — imperceptible shadow shift */
+@keyframes cardBreathe {
+  0%, 100% { box-shadow: 0 24px 64px rgba(18,18,18,0.08); }
+  50%       { box-shadow: 0 28px 72px rgba(18,18,18,0.09); }
+}
+
+/* Satellite pulse — teal */
+@keyframes satPulse {
+  0%, 100% { box-shadow: 0 4px 12px rgba(0,0,0,0.12); }
+  50%       { box-shadow: 0 4px 18px rgba(0,95,115,0.25), 0 0 10px rgba(0,95,115,0.10); }
+}
+
+/* Underline draw */
+@keyframes underlineDraw {
+  from { width: 0; opacity: 0; }
+  to   { width: 100%; opacity: 1; }
+}
+
+/* Ledger row reveal */
+@keyframes ledgerReveal {
+  from { opacity: 0; transform: translateX(-8px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+/* Dot heartbeat */
+@keyframes heartbeat {
+  0%, 100% { transform: scale(1); opacity: 0.8; }
+  30%       { transform: scale(1.5); opacity: 1; }
+  60%       { transform: scale(1); opacity: 0.8; }
+}
+
+/* Button emit — outward light ring */
+@keyframes btnEmit {
+  0%   { box-shadow: 0 0 0 0 rgba(28,25,23,0.15), 0 4px 20px rgba(0,0,0,0.12); }
+  100% { box-shadow: 0 0 0 10px rgba(28,25,23,0), 0 8px 32px rgba(0,0,0,0.08); }
+}
+
+@keyframes btnEmitBlue {
+  0%   { box-shadow: 0 0 0 0 rgba(0,61,210,0.25), 0 4px 20px rgba(0,61,210,0.12); }
+  100% { box-shadow: 0 0 0 12px rgba(0,61,210,0), 0 8px 32px rgba(0,61,210,0.08); }
+}
+
+/* Graph line draw-in */
+@keyframes lineGrow {
+  from { stroke-dashoffset: 1000; opacity: 0; }
+  to   { stroke-dashoffset: 0;    opacity: 1; }
+}
+
+/* Resolved status tick */
+@keyframes resolvedTick {
+  0%   { color: var(--status-resolved); text-shadow: 0 0 0 rgba(16,185,129,0); }
+  50%  { text-shadow: 0 0 12px rgba(16,185,129,0.5); }
+  100% { color: var(--status-resolved); text-shadow: 0 0 0 rgba(16,185,129,0); }
+}
+
+/* ══════════════════════════════════════════════════════════════
+   BUTTONS — Soft light emission, magnetic feel
+   ══════════════════════════════════════════════════════════════ */
+
+.btn-filled,
+.btn-filled-link {
+  transition:
+    background-color var(--duration-fast) var(--ease-magnetic),
+    box-shadow       var(--duration-fast) var(--ease-magnetic),
+    transform        var(--duration-fast) var(--ease-magnetic),
+    border-color     var(--duration-fast) var(--ease-magnetic) !important;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.10);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-filled::before,
+.btn-filled-link::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.08) 0%, transparent 60%);
+  opacity: 0;
+  transition: opacity var(--duration-fast) var(--ease-magnetic);
+  pointer-events: none;
+}
+
+.btn-filled:hover,
+.btn-filled-link:hover {
+  transform: translateY(-2px) scale(1.02) !important;
+  box-shadow: 0 8px 28px rgba(0,95,115,0.25), 0 0 0 0 rgba(0,95,115,0); /* Warm teal glow */
+  animation: btnEmitBlue 0.6s var(--ease-out-expo) forwards;
+}
+
+.btn-filled:hover::before,
+.btn-filled-link:hover::before { opacity: 1; }
+
+.btn-filled:active,
+.btn-filled-link:active {
+  transform: translateY(0) scale(0.98) !important;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+  transition-duration: 80ms !important;
+}
+
+.btn-ghost {
+  transition:
+    background-color var(--duration-fast) var(--ease-magnetic),
+    border-color     var(--duration-fast) var(--ease-magnetic),
+    box-shadow       var(--duration-fast) var(--ease-magnetic),
+    transform        var(--duration-fast) var(--ease-magnetic),
+    color            var(--duration-fast) var(--ease-magnetic) !important;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-ghost::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(circle at var(--mx, 50%) var(--my, 50%), rgba(28,25,23,0.05) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity var(--duration-fast) var(--ease-magnetic);
+  pointer-events: none;
+}
+
+.btn-ghost:hover {
+  transform: translateY(-2px) scale(1.02) !important;
+  box-shadow: 0 6px 22px rgba(28,25,23,0.08);
+  animation: btnEmit 0.6s var(--ease-out-expo) forwards;
+}
+
+.btn-ghost:hover::after { opacity: 1; }
+
+.btn-ghost:active {
+  transform: translateY(0) scale(0.98) !important;
+  transition-duration: 80ms !important;
+}
+
+/* Decision button — special tactile */
+.decision-btn {
+  transition:
+    background-color var(--duration-fast) var(--ease-magnetic),
+    border-color     var(--duration-base) var(--ease-spring),
+    box-shadow       var(--duration-base) var(--ease-spring),
+    color            var(--duration-fast) var(--ease-magnetic),
+    transform        var(--duration-fast) var(--ease-magnetic) !important;
+}
+
+.decision-btn:hover {
+  transform: translateY(-2px) scale(1.02) !important;
+  box-shadow: 0 8px 24px rgba(28,25,23,0.12) !important;
+}
+
+.decision-btn:active {
+  transform: scale(0.97) !important;
+  transition-duration: 80ms !important;
+}
+
+/* ROI link */
+.roi-link {
+  transition: color var(--duration-fast) var(--ease-magnetic),
+              transform var(--duration-fast) var(--ease-magnetic) !important;
+}
+
+.roi-link:hover {
+  transform: translateX(3px) !important;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   NAVIGATION — Magnetic underline, eased hover
+   ══════════════════════════════════════════════════════════════ */
+
+.nav-link {
+  transition: color var(--duration-fast) var(--ease-magnetic) !important;
+}
+
+.nav-link::after {
+  transition: width var(--duration-base) var(--ease-spring),
+              opacity var(--duration-fast) var(--ease-magnetic) !important;
+}
+
+.mega-list-link {
+  transition:
+    color     var(--duration-fast) var(--ease-magnetic),
+    transform var(--duration-fast) var(--ease-magnetic) !important;
+}
+
+.mega-list-link:hover {
+  transform: translateX(4px) !important;
+}
+
+/* Footer links */
+.footer-list-link {
+  transition:
+    color     var(--duration-fast) var(--ease-magnetic),
+    transform var(--duration-fast) var(--ease-magnetic) !important;
+}
+
+.footer-list-link:hover {
+  transform: translateX(3px) !important;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   BADGES — Shimmer, float
+   ══════════════════════════════════════════════════════════════ */
+
+.badge {
+  animation: badgeShimmer 4s var(--ease-breathe) infinite;
+  transition: color var(--duration-fast) var(--ease-magnetic),
+              letter-spacing var(--duration-slow) var(--ease-breathe) !important;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   CARDS — Breathing, magnetic lift, glass depth
+   ══════════════════════════════════════════════════════════════ */
+
+/* Shared glass card motion */
+.lexical-text-box,
+.decision-panel,
+.ledger-sheet,
+.calculator-wrapper,
+.governance-sheet,
+.proof-card {
+  animation: cardBreathe var(--duration-drift) var(--ease-breathe) infinite;
+  transition:
+    transform        var(--duration-base) var(--ease-spring),
+    box-shadow       var(--duration-base) var(--ease-spring),
+    background-color var(--duration-base) var(--ease-spring),
+    backdrop-filter  var(--duration-base) var(--ease-spring),
+    border-color     var(--duration-base) var(--ease-spring) !important;
+}
+
+.lexical-text-box:hover,
+.decision-panel:hover,
+.ledger-sheet:hover,
+.calculator-wrapper:hover,
+.governance-sheet:hover,
+.proof-card:hover {
+  transform: translateY(-6px) scale(1.005) !important;
+  box-shadow:
+    0 48px 100px rgba(18,18,18,0.12),
+    0 0 0 1px rgba(255,255,255,0.7) !important;
+  animation-play-state: paused;
+}
+
+/* Cost cards — individual breathing */
+.cost-card {
+  animation: cardBreathe 2400ms var(--ease-breathe) infinite;
+  animation-delay: calc(var(--card-idx, 0) * 400ms);
+  transition:
+    transform        var(--duration-base) var(--ease-spring),
+    box-shadow       var(--duration-base) var(--ease-spring),
+    background-color var(--duration-base) var(--ease-spring) !important;
+}
+
+.cost-card:nth-child(1) { --card-idx: 0; }
+.cost-card:nth-child(2) { --card-idx: 1; }
+.cost-card:nth-child(3) { --card-idx: 2; }
+
+.cost-card:hover {
+  transform: translateY(-8px) scale(1.02) !important;
+  box-shadow: 0 40px 90px rgba(18,18,18,0.12) !important;
+  animation-play-state: paused;
+}
+
+.cost-card.highlight {
+  animation: cardBreathe 1800ms var(--ease-breathe) infinite,
+             pulseGlowTeal 3s var(--ease-breathe) infinite;
+}
+
+.cost-card.highlight:hover {
+  animation-play-state: paused;
+  box-shadow: 0 40px 90px rgba(18,18,18,0.12),
+              0 0 0 2px rgba(16,185,129,0.25) !important;
+}
+
+/* Mega preview card */
+.mega-preview-card {
+  transition:
+    background-color var(--duration-fast) var(--ease-magnetic),
+    transform        var(--duration-fast) var(--ease-magnetic),
+    box-shadow       var(--duration-fast) var(--ease-magnetic) !important;
+}
+
+.mega-preview-card:hover {
+  transform: translateY(-3px) !important;
+  box-shadow: 0 12px 32px rgba(18,18,18,0.07) !important;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   LEDGER ROWS — Eased reveal, hover highlight
+   ══════════════════════════════════════════════════════════════ */
+
+.ledger-sheet-row {
+  transition:
+    background-color var(--duration-fast) var(--ease-magnetic),
+    padding-left     var(--duration-fast) var(--ease-magnetic),
+    color            var(--duration-fast) var(--ease-magnetic) !important;
+  border-radius: 6px;
+}
+
+.ledger-sheet-row:hover {
+  background: rgba(0,61,210,0.03);
+  padding-left: 8px !important;
+}
+
+/* Resolved value pulse */
+.ledger-val.resolved {
+  animation: resolvedTick 3s var(--ease-breathe) infinite;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   ORBITAL SYSTEM — Hub pulse, satellite hover, ring glow
+   ══════════════════════════════════════════════════════════════ */
+
+.orbital-hub {
+  animation: hubPulse 3s var(--ease-breathe) infinite !important;
+  transition: transform var(--duration-base) var(--ease-spring) !important;
+  cursor: default;
+}
+
+.orbital-hub:hover {
+  transform: scale(1.08) !important;
+}
+
+.orbital-satellite {
+  animation: satPulse 4s var(--ease-breathe) infinite;
+  transition:
+    transform        var(--duration-fast) var(--ease-spring),
+    box-shadow       var(--duration-fast) var(--ease-spring),
+    background-color var(--duration-fast) var(--ease-spring),
+    border-color     var(--duration-fast) var(--ease-spring) !important;
+  cursor: default;
+}
+
+.orbital-satellite:hover {
+  background: rgba(255,255,255,0.16) !important;
+  border-color: rgba(255,255,255,0.4) !important;
+  box-shadow: 0 0 20px rgba(59,130,246,0.4), 0 4px 16px rgba(0,0,0,0.3) !important;
+}
+
+.sat-salesforce { animation-delay: 0ms; }
+.sat-stripe     { animation-delay: 600ms; }
+.sat-shopify    { animation-delay: 1200ms; }
+.sat-servicenow { animation-delay: 1800ms; }
+
+/* ══════════════════════════════════════════════════════════════
+   STATUS DOTS & INDICATORS — Heartbeat pulse
+   ══════════════════════════════════════════════════════════════ */
+
+.ticker-resolved-dot {
+  animation: heartbeat 2.4s var(--ease-breathe) infinite;
+}
+
+.vault-status-dot {
+  animation: heartbeat 2s var(--ease-breathe) infinite !important;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   REASONING LINES — Smooth entry reveal
+   ══════════════════════════════════════════════════════════════ */
+
+.reasoning-line {
+  transition:
+    opacity   var(--duration-slow) var(--ease-spring),
+    transform var(--duration-slow) var(--ease-spring) !important;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   GOVERNANCE SHEET SECTIONS — Hover slide
+   ══════════════════════════════════════════════════════════════ */
+
+.governance-sheet-section {
+  transition:
+    background-color var(--duration-fast) var(--ease-magnetic),
+    padding-left     var(--duration-fast) var(--ease-magnetic),
+    border-left-color var(--duration-fast) var(--ease-magnetic) !important;
+  border-left: 2px solid transparent;
+  padding-left: 0;
+  border-radius: 0 6px 6px 0;
+}
+
+.governance-sheet-section:hover {
+  background: rgba(16,185,129,0.04);
+  padding-left: 12px !important;
+  border-left-color: rgba(16,185,129,0.4) !important;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   REGISTRY TIMELINE DOTS — Eased active transition
+   ══════════════════════════════════════════════════════════════ */
+
+.registry-dot {
+  transition:
+    color     var(--duration-base) var(--ease-spring),
+    opacity   var(--duration-base) var(--ease-spring),
+    transform var(--duration-base) var(--ease-spring) !important;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   HIGHLIGHT SPANS (Lexical parser) — Eased color transition
+   ══════════════════════════════════════════════════════════════ */
+
+.highlight-span {
+  transition:
+    background-color var(--duration-slow) var(--ease-spring),
+    border-color     var(--duration-slow) var(--ease-spring),
+    color            var(--duration-slow) var(--ease-spring),
+    font-weight      var(--duration-slow) var(--ease-spring) !important;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   VAULT TERMINAL — Line entry animation
+   ══════════════════════════════════════════════════════════════ */
+
+.vault-stream-line {
+  opacity: 0;
+  transform: translateX(-6px);
+  animation: ledgerReveal var(--duration-slow) var(--ease-spring) forwards;
+}
+
+.vault-stream-line:nth-child(1) { animation-delay: 0.2s; }
+.vault-stream-line:nth-child(2) { animation-delay: 0.9s; }
+.vault-stream-line:nth-child(3) { animation-delay: 1.7s; }
+
+/* ══════════════════════════════════════════════════════════════
+   HEADER — Smooth glassmorphism state change
+   ══════════════════════════════════════════════════════════════ */
+
+header {
+  transition:
+    height           var(--duration-base) var(--ease-spring),
+    top              var(--duration-base) var(--ease-spring),
+    background-color var(--duration-slow) var(--ease-spring),
+    box-shadow       var(--duration-slow) var(--ease-spring),
+    backdrop-filter  var(--duration-slow) var(--ease-spring) !important;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   TICKER — Smooth infinite scroll with fade edges
+   ══════════════════════════════════════════════════════════════ */
+
+.ticker-item {
+  transition: color var(--duration-fast) var(--ease-magnetic) !important;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   SLIDER — Magnetic thumb
+   ══════════════════════════════════════════════════════════════ */
+
+.ticket-slider::-webkit-slider-thumb {
+  transition:
+    transform  var(--duration-fast) var(--ease-spring),
+    box-shadow var(--duration-fast) var(--ease-spring) !important;
+}
+
+.ticket-slider::-webkit-slider-thumb:hover,
+.ticket-slider:active::-webkit-slider-thumb {
+  transform: scale(1.25) !important;
+  box-shadow: 0 0 0 6px rgba(28,25,23,0.08), 0 4px 12px rgba(0,0,0,0.15) !important;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   MODALS & DRAWERS — Eased entry
+   ══════════════════════════════════════════════════════════════ */
+
+.modal-overlay,
+.drawer-overlay {
+  transition: opacity var(--duration-base) var(--ease-spring) !important;
+}
+
+.modal-content,
+.drawer-content {
+  transition: transform var(--duration-slow) var(--ease-spring),
+              opacity   var(--duration-base) var(--ease-spring) !important;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   OPTION BUTTONS (Assessment) — Tactile press
+   ══════════════════════════════════════════════════════════════ */
+
+.option-btn {
+  transition:
+    background-color var(--duration-fast) var(--ease-magnetic),
+    border-color     var(--duration-fast) var(--ease-magnetic),
+    transform        var(--duration-fast) var(--ease-magnetic),
+    box-shadow       var(--duration-fast) var(--ease-magnetic) !important;
+}
+
+.option-btn:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 6px 20px rgba(0,61,210,0.10) !important;
+}
+
+.option-btn:active {
+  transform: translateY(0) scale(0.98) !important;
+  transition-duration: 80ms !important;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   SECTION ENTRY — Scenes fade+rise in as they enter viewport
+   ══════════════════════════════════════════════════════════════ */
+
+.museum-scene .scene-layer-fg {
+  transition: opacity var(--duration-slow) var(--ease-spring),
+              transform var(--duration-slow) var(--ease-spring);
+}
+
+/* ══════════════════════════════════════════════════════════════
+   MAGNETIC HOVER DATA ATTRIBUTES (set by JS)
+   ══════════════════════════════════════════════════════════════ */
+
+[data-magnetic] {
+  transition: transform var(--duration-base) var(--ease-magnetic) !important;
+  will-change: transform;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   CURSOR UPGRADE
+   ══════════════════════════════════════════════════════════════ */
+
+.custom-cursor {
+  transition:
+    width        var(--duration-fast) var(--ease-spring),
+    height       var(--duration-fast) var(--ease-spring),
+    background   var(--duration-fast) var(--ease-spring),
+    border-color var(--duration-fast) var(--ease-spring),
+    transform    var(--duration-snap) linear !important;
+}
+
+.custom-cursor.hovering {
+  animation: pulseGlow 1.6s var(--ease-breathe) infinite;
+}

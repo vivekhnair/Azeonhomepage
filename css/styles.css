@@ -462,7 +462,7 @@ header.micro-cta-active .mega-menu-panel {
 .right-nav-actions {
   display: flex;
   align-items: center;
-  gap: 0;            /* Single CTA — no gap needed */
+  gap: 14px;
   flex-shrink: 0;
 }
 
@@ -624,6 +624,34 @@ header.micro-cta-active .mega-menu-panel {
     0 0 0 6px rgba(255, 89, 100, 0.15),
     0 8px 28px rgba(255, 89, 100, 0.45);
   animation-play-state: paused; /* Pause glow loop on hover for stability */
+}
+
+/* Compact header variants for the nav-bar CTA row */
+.roi-link--nav {
+  font-size: 0.78rem;
+  white-space: nowrap;
+}
+
+.btn-ghost--nav {
+  padding: 9px 18px;
+  font-size: 0.78rem;
+}
+
+.menu-cta-addictive--nav {
+  padding: 9px 18px;
+  font-size: 0.78rem;
+}
+
+@media (max-width: 1220px) {
+  .roi-link--nav {
+    display: none;
+  }
+}
+
+@media (max-width: 1080px) {
+  .btn-ghost--nav {
+    display: none;
+  }
 }
 
 /* Pulsing glow ring */

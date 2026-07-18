@@ -10,11 +10,11 @@
   <meta property="og:type" content="website">
   <meta property="og:title" content="Azeon AI : Autonomous Customer Operations">
   <meta property="og:description" content="Every customer issue. Resolved decisively. Enterprise-grade AI that executes database SOPs autonomously.">
-  <meta property="og:url" content="https://azeon.ai">
+  <meta property="og:url" content="https://azeonhomepage.netlify.app/">
   <meta property="og:site_name" content="Azeon AI">
 
   <!-- Canonical -->
-  <link rel="canonical" href="https://azeon.ai/">
+  <link rel="canonical" href="https://azeonhomepage.netlify.app/">
 
   <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23005F73'/><text y='24' x='4' font-size='20' font-family='serif' fill='white'>A</text></svg>">
@@ -38,6 +38,7 @@
   </div>
 
   <!-- Sticky Navigation -->
+  <div class="nav-backdrop" id="nav-backdrop"></div>
   <header role="banner">
     <div class="header-container">
       <div class="brand-wrapper">
@@ -46,14 +47,14 @@
         </a>
       </div>
 
-      <nav aria-label="Main navigation">
+      <nav id="main-nav" aria-label="Main navigation">
         <ul class="center-nav" role="list">
 
           <li class="nav-item">
             <a class="nav-link" role="button" tabindex="0" aria-haspopup="true" aria-expanded="false" aria-controls="menu-platform">Product</a>
             <div id="menu-platform" class="mega-menu-panel" role="region" aria-label="Product menu">
               <div class="mega-column">
-                <h4>Core Engine</h4>
+                <p class="mega-menu-title font-sans-label">Core Engine</p>
                 <ul class="mega-list" role="list">
                   <li><a class="mega-list-link watch-live-trigger" role="button" tabindex="0">Decision Engine</a></li>
                   <li><a class="mega-list-link watch-live-trigger" role="button" tabindex="0">Action Engine</a></li>
@@ -61,14 +62,14 @@
                 </ul>
               </div>
               <div class="mega-column">
-                <h4>Intelligence</h4>
+                <p class="mega-menu-title font-sans-label">Intelligence</p>
                 <ul class="mega-list" role="list">
                   <li><a class="mega-list-link watch-live-trigger" role="button" tabindex="0">Knowledge Sync</a></li>
                   <li><a class="mega-list-link watch-live-trigger" role="button" tabindex="0">Governance Audit</a></li>
                 </ul>
               </div>
               <div class="mega-column">
-                <h4>Integrations</h4>
+                <p class="mega-menu-title font-sans-label">Integrations</p>
                 <ul class="mega-list" role="list">
                   <li><a class="mega-list-link watch-live-trigger" role="button" tabindex="0">Salesforce Connector</a></li>
                   <li><a class="mega-list-link watch-live-trigger" role="button" tabindex="0">Stripe Gateway</a></li>
@@ -95,19 +96,19 @@
             <div id="menu-industries" class="mega-menu-panel" role="region" aria-label="Industries menu">
               <div class="mega-menu-columns-row">
                 <div class="mega-column">
-                  <h4>Banking</h4>
+                  <p class="mega-menu-title font-sans-label">Banking</p>
                   <p class="mega-industry-desc">Automate credit adjustments under strict audit control schemas.</p>
                 </div>
                 <div class="mega-column">
-                  <h4>Healthcare</h4>
+                  <p class="mega-menu-title font-sans-label">Healthcare</p>
                   <p class="mega-industry-desc">HIPAA-compliant processing with PII stripped on ingestion.</p>
                 </div>
                 <div class="mega-column">
-                  <h4>Retail &amp; Commerce</h4>
+                  <p class="mega-menu-title font-sans-label">Retail &amp; Commerce</p>
                   <p class="mega-industry-desc">Shipping dispatch syncs and card refunds executed in seconds.</p>
                 </div>
                 <div class="mega-column">
-                  <h4>Telecom</h4>
+                  <p class="mega-menu-title font-sans-label">Telecom</p>
                   <p class="mega-industry-desc">SLA penalty allocations and billing reconciliations resolved autonomously.</p>
                 </div>
               </div>
@@ -130,7 +131,7 @@
             <a class="nav-link" role="button" tabindex="0" aria-haspopup="true" aria-expanded="false" aria-controls="menu-enterprise">Enterprise</a>
             <div id="menu-enterprise" class="mega-menu-panel" role="region" aria-label="Enterprise menu">
               <div class="mega-column">
-                <h4>Security</h4>
+                <p class="mega-menu-title font-sans-label">Security</p>
                 <ul class="mega-list" role="list">
                   <li><a class="mega-list-link" tabindex="0">Data Isolation</a></li>
                   <li><a class="mega-list-link" tabindex="0">HIPAA Safeguards</a></li>
@@ -138,7 +139,7 @@
                 </ul>
               </div>
               <div class="mega-column">
-                <h4>Governance</h4>
+                <p class="mega-menu-title font-sans-label">Governance</p>
                 <ul class="mega-list" role="list">
                   <li><a class="mega-list-link" tabindex="0">Audit Trail Records</a></li>
                   <li><a class="mega-list-link" tabindex="0">Explainable Reasoning</a></li>
@@ -146,7 +147,7 @@
                 </ul>
               </div>
               <div class="mega-column">
-                <h4>Operations</h4>
+                <p class="mega-menu-title font-sans-label">Operations</p>
                 <ul class="mega-list" role="list">
                   <li><a class="mega-list-link" tabindex="0">ROI Benchmarks</a></li>
                   <li><a class="mega-list-link" tabindex="0">Parallel Scale</a></li>
@@ -172,20 +173,20 @@
             <a class="nav-link" role="button" tabindex="0" aria-haspopup="true" aria-expanded="false" aria-controls="menu-resources">Resources</a>
             <div id="menu-resources" class="mega-menu-panel" role="region" aria-label="Resources menu">
               <div class="mega-column">
-                <h4>Experiences</h4>
+                <p class="mega-menu-title font-sans-label">Experiences</p>
                 <ul class="mega-list" role="list">
                   <li><a class="mega-list-link watch-live-trigger" role="button" tabindex="0">Watch Azeon Live</a></li>
                   <li><a class="mega-list-link readiness-trigger" role="button" tabindex="0">Readiness Assessment</a></li>
                 </ul>
               </div>
               <div class="mega-column">
-                <h4>Calculators</h4>
+                <p class="mega-menu-title font-sans-label">Calculators</p>
                 <ul class="mega-list" role="list">
                   <li><a class="mega-list-link readiness-trigger" role="button" tabindex="0">ROI Calculator</a></li>
                 </ul>
               </div>
               <div class="mega-column">
-                <h4>Publications</h4>
+                <p class="mega-menu-title font-sans-label">Publications</p>
                 <ul class="mega-list" role="list">
                   <li><a class="mega-list-link blueprint-trigger" role="button" tabindex="0">Executive Blueprint</a></li>
                   <li><a class="mega-list-link blueprint-trigger" role="button" tabindex="0">Operations Benchmark</a></li>
@@ -210,21 +211,21 @@
             <a class="nav-link" role="button" tabindex="0" aria-haspopup="true" aria-expanded="false" aria-controls="menu-company">Company</a>
             <div id="menu-company" class="mega-menu-panel" role="region" aria-label="Company menu">
               <div class="mega-column">
-                <h4>Corporate</h4>
+                <p class="mega-menu-title font-sans-label">Corporate</p>
                 <ul class="mega-list" role="list">
                   <li><a class="mega-list-link" tabindex="0">About Azeon</a></li>
                   <li><a class="mega-list-link" tabindex="0">Leadership Team</a></li>
                 </ul>
               </div>
               <div class="mega-column">
-                <h4>Growth</h4>
+                <p class="mega-menu-title font-sans-label">Growth</p>
                 <ul class="mega-list" role="list">
                   <li><a class="mega-list-link" tabindex="0">Careers</a></li>
                   <li><a class="mega-list-link" tabindex="0">News &amp; Press</a></li>
                 </ul>
               </div>
               <div class="mega-column">
-                <h4>Get in Touch</h4>
+                <p class="mega-menu-title font-sans-label">Get in Touch</p>
                 <ul class="mega-list" role="list">
                   <li><a class="mega-list-link" tabindex="0">Contact Sales</a></li>
                   <li><a class="mega-list-link" tabindex="0">Partner Program</a></li>
@@ -261,6 +262,13 @@
           <span>Deploy Autonomous Pilot</span>
         </a>
       </div>
+
+      <!-- Mobile navigation toggle -->
+      <button class="mobile-nav-toggle" aria-expanded="false" aria-controls="main-nav" aria-label="Toggle navigation" type="button">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
     </div>
   </header>
 
@@ -1114,6 +1122,44 @@
         </div>
 
         <p class="proof-disclaimer">Outcomes representative of enterprise deployments. Specific results depend on implementation scope and ticket volume.</p>
+      </div>
+    </div>
+
+    <!-- Solution Consultant Consultation Banner -->
+    <div class="consultant-banner-section" role="region" aria-label="Solutions walkthrough consultation">
+      <div class="consultant-banner-inner">
+        <!-- Left: Consultant Profile Card -->
+        <div class="cb-card cb-card--consultant">
+          <div class="cb-avatar-wrapper">
+            <img src="assets/consultant_david.png" alt="David Pridgen, Solution Consultant" class="cb-avatar-img">
+          </div>
+          <hr class="cb-divider">
+          <div class="cb-profile-info">
+            <svg class="cb-star-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M12 0L15.5 8.5L24 12L15.5 15.5L12 24L8.5 15.5L0 12L8.5 8.5L12 0Z" fill="#FF7D61" />
+            </svg>
+            <div class="cb-name-group">
+              <h4>David Pridgen</h4>
+              <p>Solution Consultant</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Promo Banner Card -->
+        <div class="cb-card cb-card--promo">
+          <div class="cb-promo-content">
+            <h3 class="cb-promo-headline">Ready to Explore Azeon in Your Environment?</h3>
+            <p class="cb-promo-subline">Take the next step with a personalized walkthrough focused on your workflows, support volumes, and operational priorities.</p>
+            <a href="https://calendly.com/azeon-ai/strategy" target="_blank" rel="noopener noreferrer" class="cb-btn-black" aria-label="Book a personalized demo with David">
+              <span>Book a Personalized Demo</span>
+              <span class="cb-arrow-circle">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <path d="M1 6H11M11 6L6 1M11 6L6 11" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+            </a>
+          </div>
+        </div>
       </div>
     </div>
 

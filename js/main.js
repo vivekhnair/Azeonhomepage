@@ -14,6 +14,8 @@ class AzeonApp {
     this.initInteractiveDecision();
     this.initConversionModals();
     this.initKeyboardNav();
+    this.initMobileNav();
+    this.initFormHandling();
   }
 
   initCursor() {
@@ -566,6 +568,191 @@ class AzeonApp {
       }
 
       resultBox.style.display = 'flex';
+    }
+  }
+
+  initMobileNav() {
+    const toggle = document.querySelector('.mobile-nav-toggle');
+    const nav = document.getElementById('main-nav');
+    const backdrop = document.getElementById('nav-backdrop');
+    const navLinks = document.querySelectorAll('.nav-link');
+
+    if (!toggle || !nav || !backdrop) return;
+
+    let previousActiveElement = null;
+
+    const openDrawer = () => {
+      toggle.setAttribute('aria-expanded', 'true');
+      nav.classList.add('active');
+      backdrop.classList.add('active');
+      document.body.style.overflow = 'hidden';
+      previousActiveElement = document.activeElement;
+      
+      const firstFocusable = nav.querySelector('a, button');
+      if (firstFocusable) firstFocusable.focus();
+    };
+
+    const closeDrawer = () => {
+      toggle.setAttribute('aria-expanded', 'false');
+      nav.classList.remove('active');
+      backdrop.classList.remove('active');
+      document.body.style.overflow = '';
+      if (previousActiveElement) {
+        previousActiveElement.focus();
+        previousActiveElement = null;
+      }
+    };
+
+    toggle.addEventListener('click', (e) => {
+      const isOpen = toggle.getAttribute('aria-expanded') === 'true';
+      if (isOpen) {
+        closeDrawer();
+      } else {
+        openDrawer();
+      }
+    });
+
+    backdrop.addEventListener('click', closeDrawer);
+
+    // Escape closes drawer
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeDrawer();
+      }
+    });
+
+    // Trap focus inside open drawer
+    document.addEventListener('keydown', (e) => {
+      const isOpen = toggle.getAttribute('aria-expanded') === 'true';
+      if (!isOpen) return;
+
+      if (e.key === 'Tab') {
+        const focusableElements = nav.querySelectorAll('a, button');
+        const first = toggle;
+        const elementsList = [toggle, ...Array.from(focusableElements)];
+        const last = elementsList[elementsList.length - 1];
+
+        if (e.shiftKey) {
+          if (document.activeElement === first) {
+            last.focus();
+            e.preventDefault();
+          }
+        } else {
+          if (document.activeElement === last) {
+            first.focus();
+            e.preventDefault();
+          }
+        }
+      }
+    });
+
+    // Accordions on mobile
+    navLinks.forEach(link => {
+      link.addEventListener('click', (e) => {
+        if (window.innerWidth <= 900) {
+          e.preventDefault();
+          e.stopPropagation();
+          const parentItem = link.closest('.nav-item');
+          if (!parentItem) return;
+
+          const isActive = parentItem.classList.contains('active');
+          
+          document.querySelectorAll('.nav-item').forEach(item => {
+            if (item !== parentItem) {
+              item.classList.remove('active');
+              const itemLink = item.querySelector('.nav-link');
+              if (itemLink) itemLink.setAttribute('aria-expanded', 'false');
+            }
+          });
+
+          if (isActive) {
+            parentItem.classList.remove('active');
+            link.setAttribute('aria-expanded', 'false');
+          } else {
+            parentItem.classList.add('active');
+            link.setAttribute('aria-expanded', 'true');
+          }
+        }
+      });
+    });
+
+    nav.querySelectorAll('a, button').forEach(el => {
+      if (el.classList.contains('nav-link')) return;
+      el.addEventListener('click', closeDrawer);
+    });
+  }
+
+  initFormHandling() {
+    const form = document.getElementById('blueprint-form');
+    if (!form) return;
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      
+      const emailInput = form.querySelector('#blueprint-email');
+      const hintSpan = form.querySelector('#blueprint-hint');
+      if (!emailInput) return;
+
+      const emailValue = emailInput.value.trim();
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+      // Clean up previous error styles
+      emailInput.style.borderColor = '';
+      if (hintSpan) {
+        hintSpan.style.color = '';
+        hintSpan.innerText = 'One email delivery. No sequences. No spam.';
+      }
+
+      if (!emailRegex.test(emailValue)) {
+        // Show validation error
+        emailInput.style.borderColor = '#FF5964';
+        if (hintSpan) {
+          hintSpan.style.color = '#FF5964';
+          hintSpan.innerText = 'Please enter a valid corporate email address.';
+        }
+        emailInput.focus();
+        return;
+      }
+
+      // Success state logic
+      const successWrapper = document.createElement('div');
+      successWrapper.className = 'form-success-state';
+      successWrapper.style.textAlign = 'center';
+      successWrapper.style.padding = '20px 0';
+      successWrapper.innerHTML = `
+        <div style="font-size: 2.5rem; color: #00c389; margin-bottom: 16px;">✓</div>
+        <h4 style="font-size: 1.25rem; font-weight: 700; color: var(--text-primary); margin-bottom: 8px;">Request Received</h4>
+        <p style="font-size: 0.9rem; color: var(--text-secondary); line-height: 1.6; max-width: 320px; margin: 0 auto;">
+          The Executive Blueprint has been dispatched to <strong>${escapeHTML(emailValue)}</strong>.
+        </p>
+      `;
+
+      // TODO capture endpoint hook (e.g. Netlify Forms or Hubspot integration)
+      console.log(`[CAPTURE TODO] Submitting blueprint request email: ${emailValue}`);
+      try {
+        localStorage.setItem('last_requested_blueprint_email', emailValue);
+      } catch (err) {
+        console.warn('Could not store to localStorage:', err);
+      }
+
+      // Fade out form and fade in success message
+      form.style.transition = 'opacity 0.3s ease';
+      form.style.opacity = '0';
+      setTimeout(() => {
+        form.parentNode.replaceChild(successWrapper, form);
+      }, 300);
+    });
+
+    function escapeHTML(str) {
+      return str.replace(/[&<>'"]/g, 
+        tag => ({
+          '&': '&amp;',
+          '<': '&lt;',
+          '>': '&gt;',
+          "'": '&#39;',
+          '"': '&quot;'
+        }[tag] || tag)
+      );
     }
   }
 }

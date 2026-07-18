@@ -3100,6 +3100,11 @@ footer {
     width: 52%;
     max-width: 780px;
   }
+  #hero-headline .hero-line-1,
+  #hero-headline .hero-line-2 {
+    white-space: nowrap;
+    display: inline-block;
+  }
   .hero-os-console {
     left: 76% !important;
     width: 42% !important;

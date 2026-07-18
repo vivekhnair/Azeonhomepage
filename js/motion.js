@@ -29,13 +29,13 @@ class AzeonParallaxEngine {
   /* ─── Lenis smooth scroll ─── */
   initLenis() {
     this.lenis = new Lenis({
-      duration: 1.4,
-      easing: t => 1 - Math.pow(1 - t, 3.5),  // cubic ease-out — cinematic deceleration
+      duration: 1.2,
+      easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)),  // standard butter-smooth deceleration
       orientation: 'vertical',
       gestureOrientation: 'vertical',
       smoothWheel: true,
-      wheelMultiplier: 0.85,
-      touchMultiplier: 1.4,
+      wheelMultiplier: 1.0,
+      touchMultiplier: 1.0,
       infinite: false,
     });
 
